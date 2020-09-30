@@ -20,9 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9f42b2a-67b4-4e28-93c2-faefd15332ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.vscode/setting.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initial/src/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/initial/src/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +30,23 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IlluminatedCloudWorkspaceSettings">
+    <option name="projectWorkspaceSettings">
+      <ProjectWorkspaceSettings>
+        <option name="soqlQuerySettings">
+          <SoqlQuerySettings>
+            <option name="savedDocuments">
+              <list>
+                <SoqlQuerySavedDocument>
+                  <option name="name" value="SOQL Query 1" />
+                </SoqlQuerySavedDocument>
+              </list>
+            </option>
+          </SoqlQuerySettings>
+        </option>
+      </ProjectWorkspaceSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1iEA7KCoKpHLhSpYsG3TSydP3vV" />
   <component name="ProjectLevelVcsManager">
@@ -43,8 +59,8 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/initial/src/test/testcases/107.txt" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RunManager">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -95,29 +111,29 @@
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
     <state x="630" y="218" key="#Inspections/89.0.1831.1080@89.0.1831.1080" timestamp="1601465666612" />
-    <state x="784" y="294" key="FileChooserDialogImpl" timestamp="1601464504170">
+    <state x="784" y="294" key="FileChooserDialogImpl" timestamp="1601467514492">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state x="784" y="294" key="FileChooserDialogImpl/89.0.1831.1080@89.0.1831.1080" timestamp="1601464504170" />
-    <state width="1810" height="304" key="GridCell.Tab.0.bottom" timestamp="1601466069109">
+    <state x="784" y="294" key="FileChooserDialogImpl/89.0.1831.1080@89.0.1831.1080" timestamp="1601467514492" />
+    <state width="1810" height="304" key="GridCell.Tab.0.bottom" timestamp="1601467845820">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state width="1810" height="304" key="GridCell.Tab.0.bottom/89.0.1831.1080@89.0.1831.1080" timestamp="1601466069109" />
-    <state width="1810" height="304" key="GridCell.Tab.0.center" timestamp="1601466069109">
+    <state width="1810" height="304" key="GridCell.Tab.0.bottom/89.0.1831.1080@89.0.1831.1080" timestamp="1601467845820" />
+    <state width="1810" height="304" key="GridCell.Tab.0.center" timestamp="1601467845820">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state width="1810" height="304" key="GridCell.Tab.0.center/89.0.1831.1080@89.0.1831.1080" timestamp="1601466069109" />
-    <state width="1810" height="304" key="GridCell.Tab.0.left" timestamp="1601466069109">
+    <state width="1810" height="304" key="GridCell.Tab.0.center/89.0.1831.1080@89.0.1831.1080" timestamp="1601467845820" />
+    <state width="1810" height="304" key="GridCell.Tab.0.left" timestamp="1601467845820">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state width="1810" height="304" key="GridCell.Tab.0.left/89.0.1831.1080@89.0.1831.1080" timestamp="1601466069109" />
-    <state width="1810" height="304" key="GridCell.Tab.0.right" timestamp="1601466069109">
+    <state width="1810" height="304" key="GridCell.Tab.0.left/89.0.1831.1080@89.0.1831.1080" timestamp="1601467845820" />
+    <state width="1810" height="304" key="GridCell.Tab.0.right" timestamp="1601467845820">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state width="1810" height="304" key="GridCell.Tab.0.right/89.0.1831.1080@89.0.1831.1080" timestamp="1601466069109" />
-    <state x="505" y="184" key="SettingsEditor" timestamp="1601466064222">
+    <state width="1810" height="304" key="GridCell.Tab.0.right/89.0.1831.1080@89.0.1831.1080" timestamp="1601467845820" />
+    <state x="505" y="184" key="SettingsEditor" timestamp="1601467655513">
       <screen x="89" y="0" width="1831" height="1080" />
     </state>
-    <state x="505" y="184" key="SettingsEditor/89.0.1831.1080@89.0.1831.1080" timestamp="1601466064222" />
+    <state x="505" y="184" key="SettingsEditor/89.0.1831.1080@89.0.1831.1080" timestamp="1601467655513" />
   </component>
 </project>
