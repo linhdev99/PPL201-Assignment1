@@ -2,7 +2,6 @@ grammar BKIT;
 
 @lexer::header {
 from lexererr import *
-*** 1710165 ***
 }
 
 @lexer::members {
