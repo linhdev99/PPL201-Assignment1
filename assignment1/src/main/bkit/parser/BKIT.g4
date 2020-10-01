@@ -1,5 +1,6 @@
 grammar BKIT;
 
+//Student ID 1710165;
 @lexer::header {
 from lexererr import *
 }
@@ -27,7 +28,7 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-main: INT SEMI;
+main: VAR COLON ID SEMI;
 
 fragment DIGIT: [0-9];
 fragment DEC:   [1-9] DIGIT+;
@@ -40,7 +41,7 @@ fragment EXPONENT: EXP [+-]? DEC;
 SEMI:       ';' ;
 COLON:      ':' ;
 
-//VAR:        'Var' ;
+VAR:        'Var' ;
 
 WS:         [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
@@ -50,6 +51,8 @@ WS:         [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 //            |'If'|'Parameter'|'Return'|'Then'
 //            |'Var'|'While'|'True'|'False'
 //            |'EndDo';
+
+BODY: 'Body'
 
 OPERATOR:   '+'|'+.'|'-'|'-.'
             |'*'|'*.'|'\\'|'\\.'

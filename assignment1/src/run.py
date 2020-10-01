@@ -14,8 +14,7 @@ def main(argv):
     if len(argv) < 1:
         printUsage()
     elif argv[0] == 'gen':
-        subprocess.run(
-            ["java", "-jar", ANTLR_JAR, "-o", "../target", "-no-listener", "-visitor", "main/bkit/parser/BKIT.g4"])
+        subprocess.run(["java", "-jar", ANTLR_JAR, "-o", "../target", "-no-listener", "-visitor", "main/bkit/parser/BKIT.g4"])
     elif argv[0] == 'clean':
         subprocess.run(["rm", "-rf", "../target/main"])
     elif argv[0] == 'test':
@@ -53,9 +52,9 @@ def test(suite):
 
 
 def printUsage():
-    print("python3 run.py gen")
-    print("python3 run.py test LexerSuite")
-    print("python3 run.py test ParserSuite")
+    print("python run.py gen")
+    print("python run.py test LexerSuite")
+    print("python run.py test ParserSuite")
 
 
 if __name__ == "__main__":
