@@ -19,5 +19,20 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKITParser#var_declare.
+    def visitVar_declare(self, ctx:BKITParser.Var_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#var_normal.
+    def visitVar_normal(self, ctx:BKITParser.Var_normalContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#var_array.
+    def visitVar_array(self, ctx:BKITParser.Var_arrayContext):
+        return self.visitChildren(ctx)
+
+
 
 del BKITParser

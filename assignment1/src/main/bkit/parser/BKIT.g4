@@ -42,19 +42,13 @@ fragment HEX:   ('0x'|'0X')[0-9A-F]+;
 fragment OCT:   ('0o'|'0O')[0-7]+;
 fragment EXP:   [eE];
 fragment DOT:   '.';
-fragment EXPONENT: EXP [+-]? DEC;
+fragment EXPONENT: EXP [+-]? DIGIT+;
 
 SEMI: ';' ;
 COLON: ':' ;
 
-WS:         [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
-
-//KEYWORD:    'Body'|'Break'|'Continue'|'Do'
-//            |'Else'|'ElseIf'|'EndBody'|'EndIf'
-//            |'EndFor'|'EndWhile'|'For'|'Function'
-//            |'If'|'Parameter'|'Return'|'Then'
-//            |'Var'|'While'|'True'|'False'
-//            |'EndDo';
+WS: [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
+BCMT: ('**' .*? '**') -> skip; // Block comment
 
 // Keywords
 BODY: 'B' O D Y;
@@ -78,14 +72,6 @@ WHILE: 'W' H I L E;
 TRUE: 'T' R U E;
 FALSE: 'F' A L S E;
 ENDDO: 'E' N D D O;
-
-
-//OPERATOR:   '+'|'+.'|'-'|'-.'
-//            |'*'|'*.'|'\\'|'\\.'
-//            |'%'|'!'|'&&'|'||'
-//            |'=='|'!='|'<'|'>'
-//            |'<='|'>='|'=/='|'<.'
-//            |'>.'|'<=.'|'>=.';
 
 /**
 //Operator
@@ -142,11 +128,15 @@ GTEF: GTF EQ;
 
 //SEPARATOR:  '('|')'|'['|']'|':'|'.'|','|';'|'{'|'}';
 
-ID: [a-z][a-zA-Z0-9]* ;
-
+// Integer
 INT: DEC|HEX|OCT;
+// FLoat
+FLOAT:
+    DIGIT+ DOT EXPONENT |
+    DIGIT+ EXPONENT |
+    DIGIT* DOT (DIGIT+ EXPONENT?)?;
 
-FLOAT: DEC EXPONENT;
+ID: [a-z][a-zA-Z0-9]* ;
 
 
 ERROR_CHAR: .;
