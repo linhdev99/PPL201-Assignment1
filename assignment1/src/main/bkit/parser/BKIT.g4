@@ -31,13 +31,25 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-main: var_declare;
-var_declare: (var_normal | var_array)*?;
+main: stmt*;
+var_declare: (var_normal | var_array);
 
 var_normal: VAR COLON ID (EQ (INTLIT | FLOATLIT | STRINGLIT)+)? SEMI;
-var_array: VAR COLON ID array_vt+ EQ (array_vp | LCB array_vp (COMMA array_vp)+ RCB) SEMI; //Chưa làm được
+var_array: VAR COLON ID array_vt+ EQ (array_vp | LCB array_vp (COMMA array_vp)+ RCB) SEMI;
 array_vt: LSB INTLIT (COMMA INTLIT)* RSB;
 array_vp: LCB INTLIT (COMMA INTLIT)* RCB;
+
+func_declare: FUNCTION COLON ID parameter_func body_declare;
+parameter_func: PARAMETER COLON var_parameter (COMMA var_parameter)*;
+var_parameter: ID | ID array_vt;
+
+/**
+ * 6 Statements and Control Flow
+ */
+stmt: var_declare
+    | func_declare;
+
+body_declare: BODY COLON stmt* ENDBODY DOT;
 
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
@@ -45,6 +57,7 @@ fragment HEX:   ('0x'|'0X')[0-9A-F]+;
 fragment OCT:   ('0o'|'0O')[0-7]+;
 fragment EXP:   [eE];
 fragment EXPONENT: EXP [+-]? DIGIT+;
+
 WS: [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
 BCMT: ('**' .*? '**') -> skip; // Block comment
 
@@ -138,7 +151,7 @@ RSB: ']'; // Right Square Bracket
 SEMI: ';' ;
 COLON: ':' ;
 COMMA: ',';
-fragment DOT: '.';
+DOT: '.';
 
 // 3.3.5 Literals
 
