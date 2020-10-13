@@ -32,13 +32,15 @@ options{
 program: main EOF;
 
 main: stmt*;
-var_declare_stmt: ( var_single SEMI)
+var_declare_stmt: var_single
                 | var_list;
 
-var_single: var_declare_normal
-          | var_normal;
+var_single:
+          ( var_declare_normal
+          | var_normal
+          ) SEMI;
 
-var_list: VAR COLON var_vt SEMI BODY COLON (var_single SEMI)+ ENDBODY DOT;
+var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
 
 var_declare_normal: VAR COLON var_normal;
 var_normal: var_vt (EQ var_vp (COMMA var_vp)*)?;

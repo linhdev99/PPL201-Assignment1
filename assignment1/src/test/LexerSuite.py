@@ -27,3 +27,11 @@ class LexerSuite(unittest.TestCase):
     def test_normal_string_with_escape(self):
         """test normal string with escape"""
         self.assertTrue(TestLexer.checkLexeme(""" "ab'"cn def"  ""","""ab'"cn def,<EOF>""",107))
+    def test1(self):
+        self.assertTrue(TestLexer.checkLexeme(r"""Var: a,b,c;
+Body:
+    Var: b = 5;
+    a = 3;
+Endbody.
+Var: a[3];"""
+                                              ,"""""",108))
