@@ -32,21 +32,45 @@ options{
 program: main EOF;
 
 main: stmt*;
-var_declare: (var_normal | var_array);
+var_declare_stmt:
+                ( var_single
+                | var_list
+                )
+                SEMI;
 
-var_normal: VAR COLON ID (EQ (INTLIT | FLOATLIT | STRINGLIT)+)? SEMI;
-var_array: VAR COLON ID array_vt+ EQ (array_vp | LCB array_vp (COMMA array_vp)+ RCB) SEMI;
-array_vt: LSB INTLIT (COMMA INTLIT)* RSB;
-array_vp: LCB INTLIT (COMMA INTLIT)* RCB;
+var_single: var_declare_normal
+          | var_normal;
+
+var_list: VAR COLON;
+
+var_declare_normal: VAR COLON var_normal;
+var_normal: var_vt (EQ var_vp (COMMA var_vp)*)?;
+
+var_vt: ID (array_vt)? (COMMA ID (array_vt)?)*;
+var_vp: var_vp_int
+      | var_vp_float
+      | var_vp_string
+      | array_vp
+      | ID;
+
+var_vp_int: INTLIT;
+var_vp_float: FLOATLIT;
+var_vp_string: STRINGLIT;
+
+array_vt: sb_value+;
+array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
+
+sb_value: LSB var_vp (COMMA var_vp)* RSB;
+cb_value: LCB var_vp (COMMA var_vp)* RCB;
 
 func_declare: FUNCTION COLON ID parameter_func body_declare;
 parameter_func: PARAMETER COLON var_parameter (COMMA var_parameter)*;
-var_parameter: ID | ID array_vt;
+var_parameter: ID sb_value?;
 
 /**
  * 6 Statements and Control Flow
  */
-stmt: var_declare
+stmt: var_declare_stmt
     | func_declare;
 
 body_declare: BODY COLON stmt* ENDBODY DOT;
@@ -58,7 +82,7 @@ fragment OCT:   ('0o'|'0O')[0-7]+;
 fragment EXP:   [eE];
 fragment EXPONENT: EXP [+-]? DIGIT+;
 
-WS: [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
+WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
 BCMT: ('**' .*? '**') -> skip; // Block comment
 
 // 3.3.2 Keywords
@@ -156,19 +180,21 @@ DOT: '.';
 // 3.3.5 Literals
 
 // Integer
-INTLIT: DEC | HEX | OCT;
+INTLIT: (ADD|SUB)? (DEC | HEX | OCT);
 
 // FLoat
-FLOATLIT:   DIGIT+ DOT EXPONENT
+FLOATLIT:   (ADD|SUB)?
+        (   DIGIT+ DOT EXPONENT
         |   DIGIT+ EXPONENT
-        |   DIGIT* DOT (DIGIT+ EXPONENT?)?;
+        |   DIGIT* DOT (DIGIT+ EXPONENT?)?
+        );
 
 // Bool
 BOOLEANLIT: TRUE | FALSE;
 
 // String
-STRINGLIT: '"' STRCHAR* ( [\b\t\n\f\r"'\\] | EOF )'"';
-fragment STRCHAR: ~[\t\f\r\n"];
+STRINGLIT: '"' STRCHAR* '"';
+fragment STRCHAR: ~[\f\r\n"];
 
 // 3.3.1 Identifiers
 ID: [a-z][a-zA-Z0-9]* ;
