@@ -3,6 +3,7 @@
 */
 grammar BKIT;
 
+
 @lexer::header {
 from lexererr import *
 }
@@ -11,7 +12,7 @@ from lexererr import *
 def emit(self):
     tk = self.type
     result = super().emit()
-    if tk == self.UNCLOSE_STRING:       
+    if tk == self.UNCLOSE_STRING:
         raise UncloseString(result.text)
     elif tk == self.ILLEGAL_ESCAPE:
         raise IllegalEscape(result.text)
@@ -30,27 +31,28 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-main: (var_declare);
-var_declare: (var_normal | var_array)?;
+main: (var_declare | keywords*);
+var_declare: (var_normal | var_array)*?;
 
-var_normal: VAR COLON ID (EQ (INT | FLOAT)+)? SEMI;
-var_array: VAR COLON ID ('[' INT ']') EQ ('{'INT'}') SEMI; //Chưa làm được
+var_normal: VAR COLON ID (EQ (INTLIT | FLOATLIT | STRINGLIT)+)? SEMI;
+var_array: VAR COLON ID ('[' INTLIT ']') EQ ('{'INTLIT'}') SEMI; //Chưa làm được
 
 fragment DIGIT: [0-9];
-fragment DEC:   [1-9] DIGIT*;
+fragment DEC:   '0' | [1-9] DIGIT*;
 fragment HEX:   ('0x'|'0X')[0-9A-F]+;
 fragment OCT:   ('0o'|'0O')[0-7]+;
 fragment EXP:   [eE];
-fragment DOT:   '.';
 fragment EXPONENT: EXP [+-]? DIGIT+;
-
-SEMI: ';' ;
-COLON: ':' ;
-
 WS: [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
 BCMT: ('**' .*? '**') -> skip; // Block comment
 
-// Keywords
+// 3.3.1 Identifiers
+ID: [a-z][a-zA-Z0-9]* ;
+
+// 3.3.2 Keywords
+keywords: BODY | BREAK | CONTINUE | DO | ELSE | ELSEIF | ENDBODY
+        | ENDIF | ENDFOR | ENDWHILE | FOR | FUNCTION | IF | PARAMETER
+        | RETURN | THEN | VAR | WHILE | TRUE | FALSE | ENDDO;
 BODY: 'B' O D Y;
 BREAK: 'B' R E A K;
 CONTINUE: 'C' O N T I N U E;
@@ -74,7 +76,7 @@ FALSE: 'F' A L S E;
 ENDDO: 'E' N D D O;
 
 /**
-//Operator
+// 3.3.3 Operator
 */
 
 OPERATOR: BOOL_OPERATOR | ARITHMETIC_OPERATOR | RELATIONAL_OPERATOR;
@@ -126,17 +128,34 @@ LTEF: LTINT EQ DOT;
 GTF: GTINT DOT;
 GTEF: GTF EQ;
 
-//SEPARATOR:  '('|')'|'['|']'|':'|'.'|','|';'|'{'|'}';
+// 3.3.4 SEPARATOR:  '('|')'|'['|']'|':'|'.'|','|';'|'{'|'}';
+LP: '('; // Left Parenthesis
+RP: ')'; // Right Parenthesis
+LCB: '{'; // Left Curly Bracket
+RCB: '}'; // Right Curly Bracket
+LSB: '['; // Left Square Bracket
+RSB: ']'; // Right Square Bracket
+SEMI: ';' ;
+COLON: ':' ;
+COMMA: ',';
+fragment DOT: '.';
+
+// 3.3.5 Literals
 
 // Integer
-INT: DEC|HEX|OCT;
-// FLoat
-FLOAT:
-    DIGIT+ DOT EXPONENT |
-    DIGIT+ EXPONENT |
-    DIGIT* DOT (DIGIT+ EXPONENT?)?;
+INTLIT: DEC | HEX | OCT;
 
-ID: [a-z][a-zA-Z0-9]* ;
+// FLoat
+FLOATLIT:   DIGIT+ DOT EXPONENT
+        |   DIGIT+ EXPONENT
+        |   DIGIT* DOT (DIGIT+ EXPONENT?)?;
+
+// Bool
+BOOLEANLIT: TRUE | FALSE;
+
+// String
+STRINGLIT: '"' STRCHAR* '"';
+fragment STRCHAR: ~[\b\f\r\n\t"];
 
 
 ERROR_CHAR: .;
