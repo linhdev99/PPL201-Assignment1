@@ -31,11 +31,13 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-main: (var_declare | keywords*);
+main: var_declare;
 var_declare: (var_normal | var_array)*?;
 
 var_normal: VAR COLON ID (EQ (INTLIT | FLOATLIT | STRINGLIT)+)? SEMI;
-var_array: VAR COLON ID ('[' INTLIT ']') EQ ('{'INTLIT'}') SEMI; //Chưa làm được
+var_array: VAR COLON ID array_vt+ EQ (array_vp | LCB array_vp (COMMA array_vp)+ RCB) SEMI; //Chưa làm được
+array_vt: LSB INTLIT (COMMA INTLIT)* RSB;
+array_vp: LCB INTLIT (COMMA INTLIT)* RCB;
 
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
@@ -46,13 +48,11 @@ fragment EXPONENT: EXP [+-]? DIGIT+;
 WS: [ \t\f\r\n]+ -> skip ; // skip spaces, tabs, newlines
 BCMT: ('**' .*? '**') -> skip; // Block comment
 
-// 3.3.1 Identifiers
-ID: [a-z][a-zA-Z0-9]* ;
-
 // 3.3.2 Keywords
-keywords: BODY | BREAK | CONTINUE | DO | ELSE | ELSEIF | ENDBODY
-        | ENDIF | ENDFOR | ENDWHILE | FOR | FUNCTION | IF | PARAMETER
-        | RETURN | THEN | VAR | WHILE | TRUE | FALSE | ENDDO;
+//keywords: BODY | BREAK | CONTINUE | DO | ELSE | ELSEIF | ENDBODY
+//        | ENDIF | ENDFOR | ENDWHILE | FOR | FUNCTION | IF | PARAMETER
+//        | RETURN | THEN | VAR | WHILE | TRUE | FALSE | ENDDO;
+
 BODY: 'B' O D Y;
 BREAK: 'B' R E A K;
 CONTINUE: 'C' O N T I N U E;
@@ -154,9 +154,11 @@ FLOATLIT:   DIGIT+ DOT EXPONENT
 BOOLEANLIT: TRUE | FALSE;
 
 // String
-STRINGLIT: '"' STRCHAR* '"';
-fragment STRCHAR: ~[\b\f\r\n\t"];
+STRINGLIT: '"' STRCHAR* ( [\b\t\n\f\r"'\\] | EOF )'"';
+fragment STRCHAR: ~[\t\f\r\n"];
 
+// 3.3.1 Identifiers
+ID: [a-z][a-zA-Z0-9]* ;
 
 ERROR_CHAR: .;
 UNCLOSE_STRING: .;
