@@ -192,8 +192,9 @@ FLOATLIT:   (ADD|SUB)?
 BOOLEANLIT: TRUE | FALSE;
 
 // String
-STRINGLIT: '"' STRCHAR* '"';
-fragment STRCHAR: ~[\f\r\n"];
+STRINGLIT: '"' STR_CHAR* '"';
+fragment STR_CHAR: ~[\b\f\r\n\t"'\\] | ESC_SEQ ;
+fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
 
 // 3.3.1 Identifiers
 ID: [a-z][a-zA-Z0-9]* ;
