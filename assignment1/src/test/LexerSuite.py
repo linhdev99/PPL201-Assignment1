@@ -33,3 +33,11 @@ class LexerSuite(unittest.TestCase):
         """test illegal escape"""
         self.assertTrue(TestLexer.checkLexeme(""" "abc\\t def"  ""","""abc\\t def,<EOF>""",108))
 
+    def test_comment_1(self):
+        self.assertTrue(TestLexer.checkLexeme(""" ** comment * """, "Unterminated Comment",109))
+
+    def test_comment_2(self):
+        self.assertTrue(TestLexer.checkLexeme(""" ** comment 2 """, "Unterminated Comment",110))
+
+    def test_comment_3(self):
+        self.assertTrue(TestLexer.checkLexeme(""" ** comment ** """, "<EOF>",111))

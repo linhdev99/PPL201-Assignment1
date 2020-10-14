@@ -221,7 +221,7 @@ UNCLOSE_STRING: '"' STR_CHAR* ([\n] | EOF)
 	;
 UNTERMINATED_COMMENT: '**' UNT_CMT* '*'?
     {
-        raise UnterminatedComment(self.text)
+        raise UnterminatedComment()
     };
 
 // String

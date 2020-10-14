@@ -535,7 +535,7 @@ class BKITLexer(Lexer):
     def UNTERMINATED_COMMENT_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 3:
 
-                    raise UnterminatedComment(self.text)
+                    raise UnterminatedComment()
                 
      
 
