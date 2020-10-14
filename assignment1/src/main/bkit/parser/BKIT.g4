@@ -46,20 +46,24 @@ var_declare_normal: VAR COLON var_normal;
 var_normal: var_vt (EQ var_vp (COMMA var_vp)*)?;
 
 var_vt: ID (array_vt)? (COMMA ID (array_vt)?)*;
-var_vp: var_vp_int
-      | var_vp_float
-      | var_vp_string
-      | array_vp
-      | ID;
+var_vp: list_value
+      | array_vp;
+list_value: var_vp_int
+          | var_vp_float
+          | var_vp_string
+          | ID array_vt?;
+list_value_sb: var_vp_int
+             | ID array_vt?
+             | ID LP list_value RP;
 
 var_vp_int: INTLIT;
 var_vp_float: FLOATLIT;
 var_vp_string: STRINGLIT;
 
-array_vt: sb_value+;
+array_vt: sb_value*;
 array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
 
-sb_value: LSB var_vp (COMMA var_vp)* RSB;
+sb_value: LSB list_value_sb (COMMA list_value_sb)* RSB;
 cb_value: LCB var_vp (COMMA var_vp)* RCB;
 
 func_declare: FUNCTION COLON ID parameter_func body_declare;
