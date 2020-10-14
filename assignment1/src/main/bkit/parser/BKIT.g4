@@ -35,32 +35,32 @@ main: stmt*;
 var_declare_stmt: var_single
                 | var_list;
 
-var_single:
-          ( var_declare_normal
-          | var_normal
-          ) SEMI;
+var_single: var_normal SEMI;
+          //( var_declare_normal
+          //| var_normal
+          //) SEMI;
 
 var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
 
-var_declare_normal: VAR COLON var_normal;
-var_normal: var_vt (EQ var_vp (COMMA var_vp)*)?;
+//var_declare_normal: VAR COLON var_normal;
+var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 
-var_vt: ID (array_vt)? (COMMA ID (array_vt)?)*;
+var_vt: array_vt (COMMA array_vt)*;
 var_vp: list_value
       | array_vp;
 list_value: var_vp_int
           | var_vp_float
           | var_vp_string
-          | ID array_vt?;
+          | array_vt;
 list_value_sb: var_vp_int
-             | ID array_vt?
+             | array_vt
              | ID LP list_value RP;
 
 var_vp_int: INTLIT;
 var_vp_float: FLOATLIT;
 var_vp_string: STRINGLIT;
 
-array_vt: sb_value*;
+array_vt: ID sb_value*;
 array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
 
 sb_value: LSB list_value_sb (COMMA list_value_sb)* RSB;
