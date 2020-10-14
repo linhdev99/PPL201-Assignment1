@@ -53,10 +53,10 @@ def serializedATN():
         buf.write("ca\3\2\2\2dg\5\22\n\2eg\5\36\20\2fd\3\2\2\2fe\3\2\2\2")
         buf.write("g\21\3\2\2\2hm\5\26\f\2im\5\30\r\2jm\5\32\16\2km\5\34")
         buf.write("\17\2lh\3\2\2\2li\3\2\2\2lj\3\2\2\2lk\3\2\2\2m\23\3\2")
-        buf.write("\2\2nv\5\26\f\2ov\5\34\17\2pq\7F\2\2qr\78\2\2rs\5\22\n")
+        buf.write("\2\2nv\5\26\f\2ov\5\34\17\2pq\7E\2\2qr\78\2\2rs\5\22\n")
         buf.write("\2st\79\2\2tv\3\2\2\2un\3\2\2\2uo\3\2\2\2up\3\2\2\2v\25")
         buf.write("\3\2\2\2wx\7B\2\2x\27\3\2\2\2yz\7C\2\2z\31\3\2\2\2{|\7")
-        buf.write("E\2\2|\33\3\2\2\2}\u0081\7F\2\2~\u0080\5 \21\2\177~\3")
+        buf.write("J\2\2|\33\3\2\2\2}\u0081\7E\2\2~\u0080\5 \21\2\177~\3")
         buf.write("\2\2\2\u0080\u0083\3\2\2\2\u0081\177\3\2\2\2\u0081\u0082")
         buf.write("\3\2\2\2\u0082\35\3\2\2\2\u0083\u0081\3\2\2\2\u0084\u0090")
         buf.write("\5\"\22\2\u0085\u0086\7:\2\2\u0086\u0089\5\"\22\2\u0087")
@@ -73,13 +73,13 @@ def serializedATN():
         buf.write("\2\u00a0\u009e\3\2\2\2\u00a1\u00a4\3\2\2\2\u00a2\u00a0")
         buf.write("\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a5\3\2\2\2\u00a4")
         buf.write("\u00a2\3\2\2\2\u00a5\u00a6\7;\2\2\u00a6#\3\2\2\2\u00a7")
-        buf.write("\u00a8\7\20\2\2\u00a8\u00a9\7?\2\2\u00a9\u00aa\7F\2\2")
+        buf.write("\u00a8\7\20\2\2\u00a8\u00a9\7?\2\2\u00a9\u00aa\7E\2\2")
         buf.write("\u00aa\u00ab\5&\24\2\u00ab\u00ac\5,\27\2\u00ac%\3\2\2")
         buf.write("\2\u00ad\u00ae\7\22\2\2\u00ae\u00af\7?\2\2\u00af\u00b4")
         buf.write("\5(\25\2\u00b0\u00b1\7@\2\2\u00b1\u00b3\5(\25\2\u00b2")
         buf.write("\u00b0\3\2\2\2\u00b3\u00b6\3\2\2\2\u00b4\u00b2\3\2\2\2")
         buf.write("\u00b4\u00b5\3\2\2\2\u00b5\'\3\2\2\2\u00b6\u00b4\3\2\2")
-        buf.write("\2\u00b7\u00b9\7F\2\2\u00b8\u00ba\5 \21\2\u00b9\u00b8")
+        buf.write("\2\u00b7\u00b9\7E\2\2\u00b8\u00ba\5 \21\2\u00b9\u00b8")
         buf.write("\3\2\2\2\u00b9\u00ba\3\2\2\2\u00ba)\3\2\2\2\u00bb\u00be")
         buf.write("\5\6\4\2\u00bc\u00be\5$\23\2\u00bd\u00bb\3\2\2\2\u00bd")
         buf.write("\u00bc\3\2\2\2\u00be+\3\2\2\2\u00bf\u00c0\7\5\2\2\u00c0")
@@ -128,8 +128,8 @@ class BKITParser ( Parser ):
                       "GTEINT", "RELATIONAL_OPERATOR_FLOAT", "NEQF", "LTF", 
                       "LTEF", "GTF", "GTEF", "LP", "RP", "LCB", "RCB", "LSB", 
                       "RSB", "SEMI", "COLON", "COMMA", "DOT", "INTLIT", 
-                      "FLOATLIT", "BOOLEANLIT", "STRINGLIT", "ID", "ERROR_CHAR", 
-                      "UNCLOSE_STRING", "ILLEGAL_ESCAPE", "UNTERMINATED_COMMENT" ]
+                      "FLOATLIT", "BOOLEANLIT", "ID", "ERROR_CHAR", "ILLEGAL_ESCAPE", 
+                      "UNCLOSE_STRING", "UNTERMINATED_COMMENT", "STRINGLIT" ]
 
     RULE_program = 0
     RULE_main = 1
@@ -227,12 +227,12 @@ class BKITParser ( Parser ):
     INTLIT=64
     FLOATLIT=65
     BOOLEANLIT=66
-    STRINGLIT=67
-    ID=68
-    ERROR_CHAR=69
+    ID=67
+    ERROR_CHAR=68
+    ILLEGAL_ESCAPE=69
     UNCLOSE_STRING=70
-    ILLEGAL_ESCAPE=71
-    UNTERMINATED_COMMENT=72
+    UNTERMINATED_COMMENT=71
+    STRINGLIT=72
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -721,7 +721,7 @@ class BKITParser ( Parser ):
             self.state = 100
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.STRINGLIT, BKITParser.ID]:
+            if token in [BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.ID, BKITParser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 98
                 self.list_value()

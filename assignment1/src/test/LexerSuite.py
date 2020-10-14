@@ -2,6 +2,7 @@ import unittest
 from TestUtils import TestLexer
 
 class LexerSuite(unittest.TestCase):
+
     def test_lower_identifier(self):
         """test identifiers"""
         self.assertTrue(TestLexer.checkLexeme("abc","abc,<EOF>",101))
@@ -18,7 +19,7 @@ class LexerSuite(unittest.TestCase):
 
     def test_illegal_escape(self):
         """test illegal escape"""
-        self.assertTrue(TestLexer.checkLexeme(""" "abch def"  ""","""Illegal Escape In String: abch""",105))
+        self.assertTrue(TestLexer.checkLexeme(""" "abc\\h def"  ""","""Illegal Escape In String: abc\\h""",105))
 
     def test_unterminated_string(self):
         """test unclosed string"""
@@ -26,6 +27,9 @@ class LexerSuite(unittest.TestCase):
 
     def test_normal_string_with_escape(self):
         """test normal string with escape"""
-        self.assertTrue(TestLexer.checkLexeme(""" "ab'"cn def"  ""","""ab'"cn def,<EOF>""",107))
-    def test1(self):
-        self.assertTrue(TestLexer.checkLexeme(r"""x < y;""","""x,<,y,;,<EOF>""",108))
+        self.assertTrue(TestLexer.checkLexeme(""" "ab'"c\\n def"  ""","""ab'"c\\n def,<EOF>""",107))
+
+    def test_illegal_escape_2(self):
+        """test illegal escape"""
+        self.assertTrue(TestLexer.checkLexeme(""" "abc\\t def"  ""","""abc\\t def,<EOF>""",108))
+

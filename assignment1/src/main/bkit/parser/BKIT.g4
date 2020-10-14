@@ -195,18 +195,46 @@ FLOATLIT:   (ADD|SUB)?
 // Bool
 BOOLEANLIT: TRUE | FALSE;
 
-// String
-STRINGLIT: '"' STR_CHAR* '"';
-fragment STR_CHAR: ~[\b\f\r\n\t"'\\] | ESC_SEQ ;
-fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
-
 // 3.3.1 Identifiers
 ID: [a-z][a-zA-Z0-9]* ;
 
-ERROR_CHAR: .;
-UNCLOSE_STRING: .;
-ILLEGAL_ESCAPE: .;
-UNTERMINATED_COMMENT: .;
+ERROR_CHAR: .
+	{
+		raise ErrorToken(self.text)
+	}
+	;
+ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL
+	{
+		value = str(self.text)
+		raise IllegalEscape(value[1:])
+	}
+	;
+UNCLOSE_STRING: '"' STR_CHAR* ([\n] | EOF)
+	{
+		value = str(self.text)
+		possible = ['\n']
+		if value[-1] in possible:
+			raise UncloseString(value[1:-1])
+		else:
+			raise UncloseString(value[1:])
+	}
+	;
+UNTERMINATED_COMMENT: '**' UNT_CMT* '*'?
+    {
+        raise UnterminatedComment(self.text)
+    };
+
+// String
+STRINGLIT: '"' STR_CHAR* '"'
+    {
+		value = str(self.text)
+		self.text = value[1:-1]
+	};
+
+fragment STR_CHAR: ~[\b\f\r\n\t"'\\] | ESC_SEQ ;
+fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
+fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\];
+fragment UNT_CMT: ~[*] ;
 
 fragment A: [aA];
 fragment B: [bB];
