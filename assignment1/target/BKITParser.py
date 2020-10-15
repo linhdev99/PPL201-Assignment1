@@ -102,18 +102,18 @@ class BKITParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+    literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "'Function'", 
+                     "'Parameter'", "'Body'", "'EndBody'", "'If'", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "'!'", "'&&'", 
+                     "'||'", "'+'", "'-'", "'*'", "'\\'", "'%'", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "'='", "<INVALID>", 
+                     "<INVALID>", "'<'", "<INVALID>", "'>'", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "'!'", "'&&'", "'||'", "'+'", "'-'", "'*'", "'\\'", 
-                     "'%'", "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "'='", "<INVALID>", "<INVALID>", "'<'", "<INVALID>", 
-                     "'>'", "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'('", "')'", "'{'", "'}'", 
-                     "'['", "']'", "';'", "':'", "','", "'.'" ]
+                     "<INVALID>", "'('", "')'", "'{'", "'}'", "'['", "']'", 
+                     "';'", "':'", "','", "'.'" ]
 
     symbolicNames = [ "<INVALID>", "WS", "BCMT", "FUNCTION", "PARAMETER", 
                       "BODY", "ENDBODY", "IF", "THEN", "ELSEIF", "ELSE", 

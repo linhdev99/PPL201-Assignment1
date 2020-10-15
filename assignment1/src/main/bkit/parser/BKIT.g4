@@ -78,6 +78,26 @@ stmt: var_declare_stmt
 
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
+//exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
+
+exp_int: exp2 ( EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ) exp2 | exp2 ;
+
+exp2: exp2 ( ADD | OR ) exp3 | exp3;
+
+exp3: exp3 (ADD | SUB) exp4 | exp4;
+
+exp4: exp4 ( MUL | DIV | MOD) exp5 | exp5;
+
+exp5: (NOT | SUB) exp5 | operands  ;
+
+operands: INTLIT
+        | BOOLEANLIT
+        | ID
+        | ID LP exps_list? RP
+        | operands LSB exp_int RSB;
+
+exps_list: exp_int (COMMA exp_int)*;
+
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
 fragment HEX:   ('0x'|'0X')[0-9A-F]+;
@@ -94,33 +114,33 @@ BCMT: ('**' .*? '**') -> skip; // Block comment
 //        | RETURN | THEN | VAR | WHILE | TRUE | FALSE | ENDDO;
 
 //Method
-FUNCTION: 'F' U N C T I O N;
-PARAMETER: 'P' A R A M E T E R;
+FUNCTION: 'Function';// 'F' U N C T I O N;
+PARAMETER: 'Parameter';//'P' A R A M E T E R;
 //Scope
-BODY: 'B' O D Y;
-ENDBODY: 'E' N D B O D Y;
+BODY: 'Body';//'B' O D Y;
+ENDBODY: 'EndBody';//'E' N D B O D Y;
 //Flow Statement
-IF: 'I' F;
-THEN: 'T' H E N;
-ELSEIF: 'E' L S E I F;
-ELSE: 'E' L S E;
-ENDIF: 'E' N D I F;
+IF: 'If';//'I' F;
+THEN: 'Then';//'T' H E N;
+ELSEIF: 'ElseIf';//'E' L S E I F;
+ELSE: 'Else';//'E' L S E;
+ENDIF: 'EndIf';//'E' N D I F;
 //Loop Statement
-FOR: 'F' O R;
-ENDFOR: 'E' N D F O R;
-DO: 'D' O;
-ENDDO: 'E' N D D O;
-WHILE: 'W' H I L E;
-ENDWHILE: 'E' N D W H I L E;
+FOR: 'For';//'F' O R;
+ENDFOR: 'EndFor';//'E' N D F O R;
+DO: 'Do';//'D' O;
+ENDDO: 'EndDo';//'E' N D D O;
+WHILE: 'While';//'W' H I L E;
+ENDWHILE: 'EndWhile';//'E' N D W H I L E;
 //Stop Statement
-RETURN: 'R' E T U R N;
-BREAK: 'B' R E A K;
-CONTINUE: 'C' O N T I N U E;
+RETURN: 'Return';//'R' E T U R N;
+BREAK: 'Break';//'B' R E A K;
+CONTINUE: 'Continue';//'C' O N T I N U E;
 //Value
-TRUE: 'T' R U E;
-FALSE: 'F' A L S E;
+TRUE: 'True';//'T' R U E;
+FALSE: 'False';//'F' A L S E;
 //Others
-VAR: 'V' A R;
+VAR: 'Var';//'V' A R;
 
 /**
 // 3.3.3 Operator
@@ -190,20 +210,18 @@ DOT: '.';
 // 3.3.5 Literals
 
 // Integer
-INTLIT: (ADD|SUB)? (DEC | HEX | OCT);
+INTLIT: DEC | HEX | OCT;
 
 // FLoat
-FLOATLIT:   (ADD|SUB)?
-        (   DIGIT+ DOT EXPONENT
-        |   DIGIT+ EXPONENT
-        |   DIGIT* DOT (DIGIT+ EXPONENT?)?
-        );
+FLOATLIT: DEC DOT (EXPONENT | DIGIT+ EXPONENT?)?
+        | DEC EXPONENT
+        ;
 
 // Bool
 BOOLEANLIT: TRUE | FALSE;
 
 // 3.3.1 Identifiers
-ID: [a-z][a-zA-Z0-9]* ;
+ID: [a-z][_a-zA-Z0-9]* ;
 
 ERROR_CHAR: .
 	{
@@ -243,29 +261,29 @@ fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
 fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\];
 fragment UNT_CMT: ~[*] ;
 
-fragment A: [aA];
-fragment B: [bB];
-fragment C: [cC];
-fragment D: [dD];
-fragment E: [eE];
-fragment F: [fF];
-fragment G: [gG];
-fragment H: [hH];
-fragment I: [iI];
-fragment J: [jJ];
-fragment K: [kK];
-fragment L: [lL];
-fragment M: [mM];
-fragment N: [nN];
-fragment O: [oO];
-fragment P: [pP];
-fragment Q: [qQ];
-fragment R: [rR];
-fragment S: [sS];
-fragment T: [tT];
-fragment U: [uU];
-fragment V: [vV];
-fragment W: [wW];
-fragment X: [xX];
-fragment Y: [yY];
-fragment Z: [zZ];
+//fragment A: [aA];
+//fragment B: [bB];
+//fragment C: [cC];
+//fragment D: [dD];
+//fragment E: [eE];
+//fragment F: [fF];
+//fragment G: [gG];
+//fragment H: [hH];
+//fragment I: [iI];
+//fragment J: [jJ];
+//fragment K: [kK];
+//fragment L: [lL];
+//fragment M: [mM];
+//fragment N: [nN];
+//fragment O: [oO];
+//fragment P: [pP];
+//fragment Q: [qQ];
+//fragment R: [rR];
+//fragment S: [sS];
+//fragment T: [tT];
+//fragment U: [uU];
+//fragment V: [vV];
+//fragment W: [wW];
+//fragment X: [xX];
+//fragment Y: [yY];
+//fragment Z: [zZ];
