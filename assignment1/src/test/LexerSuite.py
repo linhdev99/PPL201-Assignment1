@@ -41,3 +41,6 @@ class LexerSuite(unittest.TestCase):
 
     def test_comment_3(self):
         self.assertTrue(TestLexer.checkLexeme(""" ** comment ** """, "<EOF>",111))
+
+    def test_id_1(self):
+        self.assertTrue(TestLexer.checkLexeme("""id1 id2 iD3 iDi4""", "id1,id2,iD3,iDi4,<EOF>", 112))
