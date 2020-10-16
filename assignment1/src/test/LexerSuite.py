@@ -58,16 +58,25 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.checkLexeme("s_Uid_1T","s_Uid_1T,<EOF>",116))
 
     def test_keyword_1(self):
-        self.assertTrue(TestLexer.checkLexeme("If ElseIf Else Then EndIf","If,ElseIf,Else,Then,EndIf,<EOF>",117))
+        self.assertTrue(TestLexer.checkLexeme(r"""If ElseIf Else Then EndIf
+        Function Parameter Body EndBody For EndFor Do EndDo While EndWhile
+        Return Break Continue True False Var""","If,ElseIf,Else,Then,EndIf,Function,Parameter,Body,EndBody,For,EndFor,Do,EndDo,While,EndWhile,Return,Break,Continue,True,False,Var,<EOF>",117))
 
     def test_keyword_2(self):
-        self.assertTrue(TestLexer.checkLexeme("Function Parameter Body EndBody","Function,Parameter,Body,EndBody,<EOF>",118))
+        self.assertTrue(TestLexer.checkLexeme(r"""IF ELSEIF ELSE THEN ENDIF
+        FUNCTION PARAMETER BODY ENDBODY FOR ENDFOR DO ENDDO WHILE ENDWHILE
+        RETURN BREAK CONTINUE TRUE FALSE VAR""","Error Token I",118))
 
-    def test_keyword_3(self):
-        self.assertTrue(TestLexer.checkLexeme("For EndFor Do EndDo While EndWhile","For,EndFor,Do,EndDo,While,EndWhile,<EOF>",119))
+    def test_specific_char_1(self):
+        self.assertTrue(TestLexer.checkLexeme(r"""+ +. - -.
+* *. \ \.
+% ! && ||
+== != < >
+<= >= =/= <.
+>. <=. >=.""","+,+.,-,-.,*,*.,\,\.,%,!,&&,||,==,!=,<,>,<=,>=,=/=,<.,>.,<=.,>=.,<EOF>",119))
 
-    def test_keyword_4(self):
-        self.assertTrue(TestLexer.checkLexeme("Return Break Continue True False Var","Return,Break,Continue,True,False,Var,<EOF>",120))
+    def test_specific_char_2(self):
+        self.assertTrue(TestLexer.checkLexeme("() [] : . , ; {}","(,),[,],:,.,,,;,{,},<EOF>",120))
 
     def test_float_1(self):
         self.assertTrue(TestLexer.checkLexeme(r"""12.0e3

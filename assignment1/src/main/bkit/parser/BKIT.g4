@@ -202,7 +202,7 @@ NEQF: EQ '/' EQ;
 LTF: LTINT DOT;
 LTEF: LTINT EQ DOT;
 GTF: GTINT DOT;
-GTEF: GTF EQ;
+GTEF: GTINT EQ DOT;
 
 // 3.3.4 SEPARATOR:  '('|')'|'['|']'|':'|'.'|','|';'|'{'|'}';
 LP: '('; // Left Parenthesis
