@@ -47,7 +47,8 @@ var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 
 var_vt: array_vt (COMMA array_vt)*;
 var_vp: list_value
-      | array_vp;
+      | array_vp
+      | exp_int;
 list_value: var_vp_int
           | var_vp_float
           | var_vp_string
@@ -82,19 +83,27 @@ body_declare: BODY COLON stmt* ENDBODY DOT;
 
 exp_int: exp2 ( EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ) exp2 | exp2 ;
 
-exp2: exp2 ( ADD | OR ) exp3 | exp3;
+exp2: exp2 ( AND | OR ) exp3 | exp3;
 
 exp3: exp3 (ADD | SUB) exp4 | exp4;
 
 exp4: exp4 ( MUL | DIV | MOD) exp5 | exp5;
 
-exp5: (NOT | SUB) exp5 | operands  ;
+exp5: (NOT) exp5 | exp6;
+
+exp6: (SUB) exp6 | exp7;
+
+exp7: exp7 op_index | exp8;
+
+exp8: op_func | operands;
+
+op_index: ID LSB exp_int RSB;
+
+op_func: ID LP exps_list? RP;
 
 operands: INTLIT
         | BOOLEANLIT
-        | ID
-        | ID LP exps_list? RP
-        | operands LSB exp_int RSB;
+        | ID;
 
 exps_list: exp_int (COMMA exp_int)*;
 

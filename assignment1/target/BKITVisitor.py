@@ -119,5 +119,65 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKITParser#exp_int.
+    def visitExp_int(self, ctx:BKITParser.Exp_intContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp2.
+    def visitExp2(self, ctx:BKITParser.Exp2Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp3.
+    def visitExp3(self, ctx:BKITParser.Exp3Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp4.
+    def visitExp4(self, ctx:BKITParser.Exp4Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp5.
+    def visitExp5(self, ctx:BKITParser.Exp5Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp6.
+    def visitExp6(self, ctx:BKITParser.Exp6Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp7.
+    def visitExp7(self, ctx:BKITParser.Exp7Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exp8.
+    def visitExp8(self, ctx:BKITParser.Exp8Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#op_index.
+    def visitOp_index(self, ctx:BKITParser.Op_indexContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#op_func.
+    def visitOp_func(self, ctx:BKITParser.Op_funcContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#operands.
+    def visitOperands(self, ctx:BKITParser.OperandsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#exps_list.
+    def visitExps_list(self, ctx:BKITParser.Exps_listContext):
+        return self.visitChildren(ctx)
+
+
 
 del BKITParser
