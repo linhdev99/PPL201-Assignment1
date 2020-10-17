@@ -714,3 +714,32 @@ foo() fo(232) f(23.43 + 43 - 2);
             r"""Return,Break,begin,,,),,,],lc648,;,not,,,(,,,\,,,+,Var,sdCd03e,434,2156,sd,.,d544lse,to,do,xd695,(,string,of,;,EndBody,:,],.,.,f5179,>=,+,+,[,=,;,<=,(,*,||,:,=,d3d6a,,,begin,Body,,,sIss6a5a,not,sfCf2e7,,,\,,,<=,*,),;,d,=,-,=,3,-,=,0,4,-,=,0,-,=,fn,Body,,,sIss6a5a,not,sfCf2g,<,>,wAD,{,wDwFPw,wEw,+,wAS,;,},{,>,d,[,e,<EOF>""",
             178
         ))
+
+    def test_79_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+(,While,: sH050f EndIf Return,+,[
+848d While sdownto - + , ] ) >= sHdcb8 False \ fo
+, \ "\n"  da8d While sdownto - + , ] ) >= sHdcb8 False \ for > not &&&&&& (
+s **dasd ** "\t" or || || |||||| a_M3ff3 While \ For y84
+(* ( [ bc9ca,],b1ebd ; w28cd,procedure Parameter ,If*)            
+            """,
+            r"""(,,,While,,,:,sH050f,EndIf,Return,,,+,,,[,848,d,While,sdownto,-,+,,,],),>=,sHdcb8,False,\,fo,,,\,\n,da8d,While,sdownto,-,+,,,],),>=,sHdcb8,False,\,for,>,not,&&,&&,&&,(,s,\t,or,||,||,||,||,||,a_M3ff3,While,\,For,y84,(,*,(,[,bc9ca,,,],,,b1ebd,;,w28cd,,,procedure,Parameter,,,If,*,),<EOF>""",
+            179
+        ))
+
+    def test_80_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+** // sad ad var,+,erter, Mter tertaf4 , with,=,- **
+to >= ( f3451caert : ] to s_Ie94f for ,rt inertert54teger ; , for re4ern If fdBbfd7 + r5e534al <> if do downto :
+(* * ) e4686,end,rf588 > dfdR8121,ert Return Var: ** .sd34';, .\ fsdf sdf'3
+;df 'dk'4l'; d;f'lad 'fd' dfdsf';l';dfsd,f3 df
+dlf;gdkf;lh 
+f/41/2/3??? 4/2 3@@34#)$()_($_ 
+** sa
+fdtt45 <<>>,..>>(;;:)-=+.-.
+            """,
+            r"""to,>=,(,f3451caert,:,],to,s_Ie94f,for,,,rt,inertert54teger,;,,,for,re4ern,If,fdBbfd7,+,r5e534al,<,>,if,do,downto,:,(,*,*,),e4686,,,end,,,rf588,>,dfdR8121,,,ert,Return,Var,:,sa,fdtt45,<,<,>,>,,,.,.,>,>,(,;,;,:,),-,=,+.,-.,<EOF>""",
+            180
+        ))

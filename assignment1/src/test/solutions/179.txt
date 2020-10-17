@@ -1,0 +1,1 @@
+(,,,While,,,:,sH050f,EndIf,Return,,,+,,,[,848,d,While,sdownto,-,+,,,],),>=,sHdcb8,False,\,fo,,,\,\n,da8d,While,sdownto,-,+,,,],),>=,sHdcb8,False,\,for,>,not,&&,&&,&&,(,s,\t,or,||,||,||,||,||,a_M3ff3,While,\,For,y84,(,*,(,[,bc9ca,,,],,,b1ebd,;,w28cd,,,procedure,Parameter,,,If,*,),<EOF>
