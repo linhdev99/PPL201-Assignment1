@@ -812,3 +812,65 @@ Var Return ss.34  3p4 <><sdd >>sdw4 <0df- 34- ! sd "\nfdoemc l;wq sda  \t"
             r"""Unclosed String:  abc s w4 \n\r\t\b  xyz""",
             188
         ))
+
+    def test_89_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Var: sd;
+** =========== Comment here ==============
+ * Line 1
+ * Line 2
+ * Line 3
+======================================= **
+            """,
+            r"""Var,:,sd,;,<EOF>""",
+            189
+        ))
+
+    def test_90_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            """
+    " abc \t  xyz "
+""",
+
+            "Unclosed String:  abc ",
+            190
+        ))
+
+    def test_91_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            """
+    " asdbc \b  234xyz "
+""",
+
+            "Unclosed String:  asdbc ",
+            191
+        ))
+
+    def test_92_keywords(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            "BodyElseEndForIfVarEndDoDoWhile",
+            "Body,Else,EndFor,If,Var,EndDo,Do,While,<EOF>",
+            192
+        ))
+
+    def test_93_keywords(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            "Var: x = True;",
+            "Var,:,x,=,True,;,<EOF>",
+            193
+        ))
+
+    def test_94_keywords(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            "Var: x = TRUE;",
+            "Var,:,x,=,Error Token T",
+            194
+        ))
+
+    def test_95_keywords(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""Var: x = False; y = y +. 1.; "String?" **Comment** """,
+            "Var,:,x,=,False,;,y,=,y,+.,1.,;,String?,<EOF>",
+            195
+        ))
