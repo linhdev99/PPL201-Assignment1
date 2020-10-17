@@ -658,3 +658,59 @@ frwes das34 35446fgd 2 fadfsd65f eEES 1E32
             r"""Else,df,[,],f,],d,[,f,],f3,],dfdf,.,af,.,df,.,.,f,.,d,.,f,.,.,.,fder243df,1.24,1.e23,\.,sdasd2,-,13,s,34,a_sda,as23_34,s,.,=,True,False,Else,If,sdm,>,<.,,,.,.,12,;,;,;,;,;,:,:,:,:,sdasd,sad,23.,dfsdf,+.,*.,-.,+.,s,frwes,das34,35446,fgd,2,fadfsd65f,eEES,1E32,(,),(,),(,),(,),(,),(,),(,(,(,(,),),),),{,},{,},{,},[,],[,],[,],[,{,{,(,),},},{,),asd,=,asd,=,as,=,d2,&&,||,<EOF>""",
             173
         ))
+
+    def test_74_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+\\ :,..,<= fef8b \ div,=,continue
+return ) then lb1e7 true mod , Ve4b7 , := true do begin or >= >= v8b5e := for <> >= or ) [
+(* continue ) p0698,*,Oc0d5 .. c9970,,,downto*)
+""",
+            r"\,\,:,,,.,.,,,<=,fef8b,\,div,,,=,,,continue,return,),then,lb1e7,true,mod,,,Error Token V",
+            174
+        ))
+
+    def test_75_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+\. <=,var,> b2bb9 else real,boolean,return 361 <> mf34e,else,osdasd
+fe,df dsf ,354, d,f ,45,as d3 4.5432 423.4 32423 12.123e3214 12312.e-321
+&& False Then edaa6 integer , break aP278e if <> [ * \. Function While div d74f0 > not <> , ] begin *.
+(* ; Continue eeecf,False,a_Hc361 <> mf34e,else,or*)
+""",
+
+            r"\.,<=,,,var,,,>,b2bb9,else,real,,,boolean,,,return,361,<,>,mf34e,,,else,,,osdasd,fe,,,df,dsf,,,354,,,d,,,f,,,45,,,as,d3,4.5432,423.4,32423,12.123e3214,12312.e-321,&&,False,Then,edaa6,integer,,,break,aP278e,if,<,>,[,*,\.,Function,While,div,d74f0,>,not,<,>,,,],begin,*.,(,*,;,Continue,eeecf,,,False,,,a_Hc361,<,>,mf34e,,,else,,,or,*,),<EOF>",
+            175
+        ))
+
+    def test_76_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+\. ],],* ae0bc not mod,Return,,
+function < + a_Qefbe and ; of o366c false array else < > and downto for sJ4981 : <> return = for then ..
+(* of break h80bb,or,bfa18 ) f_W6bd3,real,<*)
+foo() fo(232) f(23.43 + 43 - 2);
+            """,
+            r"""\.,],,,],,,*,ae0bc,not,mod,,,Return,,,,,function,<,+,a_Qefbe,and,;,of,o366c,false,array,else,<,>,and,downto,for,sJ4981,:,<,>,return,=,for,then,.,.,(,*,of,break,h80bb,,,or,,,bfa18,),f_W6bd3,,,real,,,<,*,),foo,(,),fo,(,232,),f,(,23.43,+,43,-,2,),;,<EOF>""",
+            176
+        ))
+
+    def test_77_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""Return Break begin,),] lc648 ; not,(,\
+, + Var sdCd03e 434 2156 sd. d544;d=- =3-= 04-=0-=fg <>wAD {wDwFPw wEw+wAS;}{>d[ else to do xd695 ( string of ; EndBody : ] .. f5179 >= + + [ = ; <=
+(* || : = d3d6a,begin Body ,sIss6a5a not sfCf2e7,\,<=*)""",
+            r"""Return,Break,begin,,,),,,],lc648,;,not,,,(,,,\,,,+,Var,sdCd03e,434,2156,sd,.,d544,;,d,=,-,=,3,-,=,0,4,-,=,0,-,=,fg,<,>,wAD,{,wDwFPw,wEw,+,wAS,;,},{,>,d,[,else,to,do,xd695,(,string,of,;,EndBody,:,],.,.,f5179,>=,+,+,[,=,;,<=,(,*,||,:,=,d3d6a,,,begin,Body,,,sIss6a5a,not,sfCf2e7,,,\,,,<=,*,),<EOF>""",
+            177
+        ))
+
+    def test_78_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""Return Break begin,),] lc648 ; not,(,\
+, + Var sdCd03e 434 2156 sd. d544lse to do xd695 ( string of ; EndBody : ] .. f5179 >= + + [ = ; <=
+(* || : = d3d6a,begin Body ,sIss6a5a not sfCf2e7,\,<=*)
+;d=- =3-= 04-=0-=fn Body ,sIss6a5a not sfCf2g <>wAD {wDwFPw wEw+wAS;}{>d[ e
+            """,
+            r"""Return,Break,begin,,,),,,],lc648,;,not,,,(,,,\,,,+,Var,sdCd03e,434,2156,sd,.,d544lse,to,do,xd695,(,string,of,;,EndBody,:,],.,.,f5179,>=,+,+,[,=,;,<=,(,*,||,:,=,d3d6a,,,begin,Body,,,sIss6a5a,not,sfCf2e7,,,\,,,<=,*,),;,d,=,-,=,3,-,=,0,4,-,=,0,-,=,fn,Body,,,sIss6a5a,not,sfCf2g,<,>,wAD,{,wDwFPw,wEw,+,wAS,;,},{,>,d,[,e,<EOF>""",
+            178
+        ))
