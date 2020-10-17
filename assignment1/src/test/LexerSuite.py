@@ -272,5 +272,76 @@ illegal: "\a"
             137
         ))
 
+    def test_err_tok_1(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+            !== != & ^ % $ # ... \
+            """,
+            "!=,=,!=,Error Token &",
+            138
+        ))
+
+    def test_err_tok_2(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"If a & b Then",
+            "If,a,Error Token &",
+            139
+        ))
+
+    def test_err_tok_3(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"If a && b Then a = x ^ 2;",
+            "If,a,&&,b,Then,a,=,x,Error Token ^",
+            140
+        ))
+
+    def test_err_tok_4(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"#value 10",
+            "Error Token #",
+            141
+        ))
+
+    def test_num_1(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"1234 0000001234 00000431230",
+            "1234,0,0,0,0,0,0,1234,0,0,0,0,0,431230,<EOF>",
+            142
+        ))
+
+    def test_num_2(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+00001.1111000000
+0e-4
+000000001e-40000
+""",
+
+            "0,0,0,0,1.1111000000,0e-4,0,0,0,0,0,0,0,0,1e-40000,<EOF>",
+            143
+        ))
+
+    def test_44_illegal(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+"abc - xyz"
+"abc \ xyz"
+""",
+
+            "abc - xyz,Illegal Escape In String: abc \ ",
+            144
+        ))
+
+    def test_45_illegal(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+"abc - xyz"
+"abc \yyz"
+""",
+
+            "abc - xyz,Illegal Escape In String: abc \y",
+            145
+        ))
+
     def test_exp_1(self):
         self.assertTrue(TestLexer.checkLexeme("x = x+y-z*y\\f-t1 && 123123;","x,=,x,+,y,-,z,*,y,\,f,-,t1,&&,123123,;,<EOF>",131))
