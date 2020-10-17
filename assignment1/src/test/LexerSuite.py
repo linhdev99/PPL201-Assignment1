@@ -110,7 +110,7 @@ class LexerSuite(unittest.TestCase):
             r"""Hello, I'"m from Dong Thap!\n I'"m a student >.<! ^^,<EOF>""",
             122))
 
-    def test_string_1(self):
+    def test_string_0(self):
         self.assertTrue(TestLexer.checkLexeme(
             r"""
 "Hello, I'"m from Dong Thap!\n I'"m a student >.<! ^^"
@@ -217,7 +217,7 @@ Var: a[5];
 " Hi Hi \m\n\c\s\d\\f "
 """,
 
-            "Illegal Escape In String:  Hi Hi \m",
+            r"Illegal Escape In String:  Hi Hi \m",
             133
         ))
 
@@ -268,7 +268,7 @@ illegal: "\a"
 " abc\m "
 """,
 
-            "abc,123,x__123,abc xyz,Illegal Escape In String:  abc\m",
+            r"abc,123,x__123,abc xyz,Illegal Escape In String:  abc\m",
             137
         ))
 
@@ -325,10 +325,10 @@ illegal: "\a"
         self.assertTrue(TestLexer.checkLexeme(
             r"""
 "abc - xyz"
-"abc \ xyz"
+"abc \ xyzhg r324f sd12.34532sad.343"
 """,
 
-            "abc - xyz,Illegal Escape In String: abc \ ",
+            r"abc - xyz,Illegal Escape In String: abc \ ",
             144
         ))
 
@@ -336,12 +336,68 @@ illegal: "\a"
         self.assertTrue(TestLexer.checkLexeme(
             r"""
 "abc - xyz"
-"abc \yyz"
+"abc \yasdasdasdasdasd d2 \\d ayz"
 """,
 
-            "abc - xyz,Illegal Escape In String: abc \y",
+            r"abc - xyz,Illegal Escape In String: abc \y",
             145
         ))
 
-    def test_exp_1(self):
-        self.assertTrue(TestLexer.checkLexeme("x = x+y-z*y\\f-t1 && 123123;","x,=,x,+,y,-,z,*,y,\,f,-,t1,&&,123123,;,<EOF>",131))
+    def test_46_esc(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+"asdasd \\ xasdasdyz"
+""",
+
+            r"""asdasd \\ xasdasdyz,<EOF>""",
+            146
+        ))
+
+    def test_47_esc(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r'"\\value\\value\\empty\\??\\haha\n\t\b\f"',
+            r"\\value\\value\\empty\\??\\haha\n\t\b\f,<EOF>",
+            147
+        ))
+
+    def test_48_uncloseStr(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r'"string ne, string nua ne\' ',
+            r"Unclosed String: string ne, string nua ne\' ",
+            148
+        ))
+
+    def test_49_exp(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"b[1+2] + int(3) + float_to_int(5.1) - 2 * 3 - 5 + 4 + f[a || b] % 2",
+            r"b,[,1,+,2,],+,int,(,3,),+,float_to_int,(,5.1,),-,2,*,3,-,5,+,4,+,f,[,a,||,b,],%,2,<EOF>",
+            149
+        ))
+
+    def test_50_exp(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"1.2 +. 3.e5 *. 1e5 \. xyz -. foo(3.1) *. int_to_float(213123)",
+            r"1.2,+.,3.e5,*.,1e5,\.,xyz,-.,foo,(,3.1,),*.,int_to_float,(,213123,),<EOF>",
+            150
+        ))
+
+    def test_51_exp(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"x = x+y-z*y\f-t1 && 123123;",
+            r"x,=,x,+,y,-,z,*,y,\,f,-,t1,&&,123123,;,<EOF>",
+            151
+        ))
+
+    def test_52(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Var: x, y, z[3];
+Body:
+    x = 5;
+    y = 1.2e3;
+    z[3] = {1,2,3};
+EndBody.
+            """,
+            r"Var,:,x,,,y,,,z,[,3,],;,Body,:,x,=,5,;,y,=,1.2e3,;,z,[,3,],=,{,1,,,2,,,3,},;,EndBody,.,<EOF>",
+            152
+        ))
