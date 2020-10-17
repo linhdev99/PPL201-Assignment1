@@ -76,7 +76,7 @@ def serializedATN():
         buf.write("\5\22\n\2\u008c\u008d\7\63\2\2\u008d\u008f\3\2\2\2\u008e")
         buf.write("\u0087\3\2\2\2\u008e\u0088\3\2\2\2\u008e\u0089\3\2\2\2")
         buf.write("\u008f\25\3\2\2\2\u0090\u0091\7<\2\2\u0091\27\3\2\2\2")
-        buf.write("\u0092\u0093\7=\2\2\u0093\31\3\2\2\2\u0094\u0095\7D\2")
+        buf.write("\u0092\u0093\7=\2\2\u0093\31\3\2\2\2\u0094\u0095\7C\2")
         buf.write("\2\u0095\33\3\2\2\2\u0096\u009a\7?\2\2\u0097\u0099\5 ")
         buf.write("\21\2\u0098\u0097\3\2\2\2\u0099\u009c\3\2\2\2\u009a\u0098")
         buf.write("\3\2\2\2\u009a\u009b\3\2\2\2\u009b\35\3\2\2\2\u009c\u009a")
@@ -181,8 +181,8 @@ class BKITParser ( Parser ):
                       "GTINT", "GTEINT", "NEQF", "LTF", "LTEF", "GTF", "GTEF", 
                       "LP", "RP", "LCB", "RCB", "LSB", "RSB", "SEMI", "COLON", 
                       "COMMA", "DOT", "INTLIT", "FLOATLIT", "BOOLEANLIT", 
-                      "ID", "ERROR_CHAR", "ILLEGAL_ESCAPE", "UNCLOSE_STRING", 
-                      "UNTERMINATED_COMMENT", "STRINGLIT" ]
+                      "ID", "ILLEGAL_ESCAPE", "UNCLOSE_STRING", "UNTERMINATED_COMMENT", 
+                      "STRINGLIT", "ERROR_CHAR" ]
 
     RULE_program = 0
     RULE_main = 1
@@ -289,11 +289,11 @@ class BKITParser ( Parser ):
     FLOATLIT=59
     BOOLEANLIT=60
     ID=61
-    ERROR_CHAR=62
-    ILLEGAL_ESCAPE=63
-    UNCLOSE_STRING=64
-    UNTERMINATED_COMMENT=65
-    STRINGLIT=66
+    ILLEGAL_ESCAPE=62
+    UNCLOSE_STRING=63
+    UNTERMINATED_COMMENT=64
+    STRINGLIT=65
+    ERROR_CHAR=66
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)

@@ -232,21 +232,17 @@ BOOLEANLIT: TRUE | FALSE;
 // 3.3.1 Identifiers
 ID: [a-z][_a-zA-Z0-9]* ;
 
-ERROR_CHAR: .
-	{
-		raise ErrorToken(self.text)
-	}
-	;
+
 ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL
 	{
 		value = str(self.text)
 		raise IllegalEscape(value[1:])
 	}
 	;
-UNCLOSE_STRING: '"' STR_CHAR* ([\n] | EOF)
+UNCLOSE_STRING: '"' STR_CHAR* ([\n\f\r\b\t'\\] | EOF)
 	{
 		value = str(self.text)
-		possible = ['\n']
+		possible = ['\b', '\t', '\n', '\f', '\r', "'", '\\']
 		if value[-1] in possible:
 			raise UncloseString(value[1:-1])
 		else:
@@ -264,6 +260,12 @@ STRINGLIT: '"' STR_CHAR* '"'
 		value = str(self.text)
 		self.text = value[1:-1]
 	};
+
+ERROR_CHAR: .
+	{
+		raise ErrorToken(self.text)
+	}
+	;
 
 fragment STR_CHAR: ~[\b\f\r\n\t"'\\] | ESC_SEQ ;
 fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
