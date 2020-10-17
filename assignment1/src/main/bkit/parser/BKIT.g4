@@ -31,18 +31,14 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-main: stmt*;
+    main: stmt*;
 var_declare_stmt: var_single
                 | var_list;
 
 var_single: var_normal SEMI;
-          //( var_declare_normal
-          //| var_normal
-          //) SEMI;
 
 var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
 
-//var_declare_normal: VAR COLON var_normal;
 var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 
 var_vt: array_vt (COMMA array_vt)*;
@@ -64,7 +60,7 @@ var_vp_string: STRINGLIT;
 array_vt: ID sb_value*;
 array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
 
-sb_value: LSB list_value_sb (COMMA list_value_sb)* RSB;
+sb_value: LSB list_value_sb RSB; // (COMMA list_value_sb)* RSB;
 cb_value: LCB var_vp (COMMA var_vp)* RCB;
 
 func_declare: FUNCTION COLON ID parameter_func? body_declare;
