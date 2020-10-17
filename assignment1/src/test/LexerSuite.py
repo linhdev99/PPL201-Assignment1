@@ -788,3 +788,27 @@ Var Return ss.34  3p4 <><sdd >>sdw4 <0df- 34- ! sd "\nfdoemc l;wq sda  \t"
             r"""Unclosed String: das d2 \n """,
             185
         ))
+
+    def test_86_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""" abc \ xyz " 
+            """,
+            r"Illegal Escape In String:  abc \ ",
+            186
+        ))
+
+    def test_87_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""  " abc \r  xyz  """,
+            r"Unclosed String:  abc \r  xyz  ",
+            187
+        ))
+
+    def test_88_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+    " abc s w4 \n\r\t\b  xyz
+            """,
+            r"""Unclosed String:  abc s w4 \n\r\t\b  xyz""",
+            188
+        ))
