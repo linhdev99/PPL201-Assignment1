@@ -854,23 +854,58 @@ Var: sd;
             192
         ))
 
-    def test_93_keywords(self):
+    def test_93_tok(self):
         self.assertTrue(TestLexer.checkLexeme(
             "Var: x = True;",
             "Var,:,x,=,True,;,<EOF>",
             193
         ))
 
-    def test_94_keywords(self):
+    def test_94_tok(self):
         self.assertTrue(TestLexer.checkLexeme(
             "Var: x = TRUE;",
             "Var,:,x,=,Error Token T",
             194
         ))
 
-    def test_95_keywords(self):
+    def test_95_tok(self):
         self.assertTrue(TestLexer.checkLexeme(
             r"""Var: x = False; y = y +. 1.; "String?" **Comment** """,
             "Var,:,x,=,False,;,y,=,y,+.,1.,;,String?,<EOF>",
             195
+        ))
+
+    def test_96_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""a[1][3][3][3][3][foo()]""",
+            r"""a,[,1,],[,3,],[,3,],[,3,],[,3,],[,foo,(,),],<EOF>""",
+            196
+        ))
+
+    def test_97_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""foo(123,23,23,2,3,23,5,4,5,7,87,10,1.4,1.e3)""",
+            r"""foo,(,123,,,23,,,23,,,2,,,3,,,23,,,5,,,4,,,5,,,7,,,87,,,10,,,1.4,,,1.e3,),<EOF>""",
+            197
+        ))
+
+    def test_98_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""id = 1710165; name = "Huynh Pham Phuoc Linh";""",
+            r"""id,=,1710165,;,name,=,Huynh Pham Phuoc Linh,;,<EOF>""",
+            198
+        ))
+
+    def test_99_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""abc xyz asd[1]; 2 + 23 + 23 - 23 * 1 \. 4e3 +. 5.3""",
+            r"""abc,xyz,asd,[,1,],;,2,+,23,+,23,-,23,*,1,\.,4e3,+.,5.3,<EOF>""",
+            199
+        ))
+
+    def test_100_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""FunctionParameterBodyEndBodyIfThenElseIfElseEndIfForEndForDoEndDoWhileEndWhileReturnBreakContinueTrueFalseVar!""",
+            r"""Function,Parameter,Body,EndBody,If,Then,ElseIf,Else,EndIf,For,EndFor,Do,EndDo,While,EndWhile,Return,Break,Continue,True,False,Var,!,<EOF>""",
+            200
         ))
