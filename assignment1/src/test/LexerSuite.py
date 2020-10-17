@@ -743,3 +743,48 @@ fdtt45 <<>>,..>>(;;:)-=+.-.
             r"""to,>=,(,f3451caert,:,],to,s_Ie94f,for,,,rt,inertert54teger,;,,,for,re4ern,If,fdBbfd7,+,r5e534al,<,>,if,do,downto,:,(,*,*,),e4686,,,end,,,rf588,>,dfdR8121,,,ert,Return,Var,:,sa,fdtt45,<,<,>,>,,,.,.,>,>,(,;,;,:,),-,=,+.,-.,<EOF>""",
             180
         ))
+
+    def test_81_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+sdfp[3dpf vb..,. df,.d,><> d,f4;, ;,df./ asfd 3 ????
+            """,
+            r"""sdfp,[,3,dpf,vb,.,.,,,.,df,,,.,d,,,>,<,>,d,,,f4,;,,,;,,,df,.,Error Token /""",
+            181
+        ))
+
+    def test_82_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Var Return ss.34  3p4 <><sdd >>sdw4 <0df- 34- ! sd "\nfdoemc l;wq sda  \t"
+            """,
+            r"""Var,Return,ss,.,34,3,p4,<,>,<,sdd,>,>,sdw4,<,0,df,-,34,-,!,sd,\nfdoemc l;wq sda  \t,<EOF>""",
+            182
+        ))
+
+    def test_83_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+            "abc "  xyz"
+            """,
+            r"""abc ,xyz,Unclosed String: """,
+            183
+        ))
+
+    def test_84_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+            " abc \sd 34<> 42 xyz "
+            """,
+            r"Illegal Escape In String:  abc \s",
+            184
+        ))
+
+    def test_85_err(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+"das d2 \n 
+            """,
+            r"""Unclosed String: das d2 \n """,
+            185
+        ))
