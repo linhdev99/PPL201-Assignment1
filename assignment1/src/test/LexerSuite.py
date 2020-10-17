@@ -251,5 +251,26 @@ illegal: "\a"
             135
         ))
 
+    def test_string_5(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+" abc '" xyz " ghi
+""",
+
+            r""" abc '" xyz ,ghi,<EOF>""",
+            136
+        ))
+
+    def test_string_6(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+"abc" 123 x__123 "abc xyz"
+" abc\m "
+""",
+
+            "abc,123,x__123,abc xyz,Illegal Escape In String:  abc\m",
+            137
+        ))
+
     def test_exp_1(self):
         self.assertTrue(TestLexer.checkLexeme("x = x+y-z*y\\f-t1 && 123123;","x,=,x,+,y,-,z,*,y,\,f,-,t1,&&,123123,;,<EOF>",131))
