@@ -377,9 +377,45 @@ Var: x, y, z[3];
 Body:
     x = 5;
     y = 1.2e3;
+    
     z[3] = {1,2,3};
 EndBody.
             """,
             r"Var,:,x,,,y,,,z,[,3,],;,Body,:,x,=,5,;,y,=,1.2e3,;,z,[,3,],=,{,1,,,2,,,3,},;,EndBody,.,<EOF>",
             152
         ))
+
+    def test_53_complex(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Body:
+        x = 10;
+        ok();
+    EndBody.
+            """,
+            r"""Function,:,foo,Body,:,x,=,10,;,ok,(,),;,EndBody,.,<EOF>""",
+            153
+        ))
+
+    def test_54_unclose_str(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+value = "string nay la value;
+value2 = "string string string";
+            """,
+            r"""value,=,Unclosed String: string nay la value;""",
+            154
+        ))
+
+    def test_55_complex(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+For (i = 1, i < 5, 2) Do
+    writeln(i);
+EndFor.
+            """,
+            r"""For,(,i,=,1,,,i,<,5,,,2,),Do,writeln,(,i,),;,EndFor,.,<EOF>""",
+            155
+        ))
+

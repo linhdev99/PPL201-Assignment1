@@ -67,15 +67,17 @@ array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
 sb_value: LSB list_value_sb (COMMA list_value_sb)* RSB;
 cb_value: LCB var_vp (COMMA var_vp)* RCB;
 
-func_declare: FUNCTION COLON ID parameter_func body_declare;
+func_declare: FUNCTION COLON ID parameter_func? body_declare;
 parameter_func: PARAMETER COLON var_parameter (COMMA var_parameter)*;
 var_parameter: ID sb_value?;
+func_call: ID LP list_value? RP SEMI;
 
 /**
  * 6 Statements and Control Flow
  */
 stmt: var_declare_stmt
-    | func_declare;
+    | func_declare
+    | func_call;
 
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
