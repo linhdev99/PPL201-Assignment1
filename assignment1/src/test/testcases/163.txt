@@ -1,0 +1,14 @@
+
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    ** This is a single-line comment. **
+    ** This is a
+     * multi-line
+     * comment.\a\a\a\a\ad\s\ad\asd\qw\eq\we\as\d
+     **
+    EndBody.  
+            

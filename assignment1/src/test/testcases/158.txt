@@ -1,0 +1,9 @@
+
+Function: foo
+    Parameter: x
+    Body:
+        x = x + 1;
+        str = "str\n";
+        str2 = "sdas\a";
+    EndBody.  
+            

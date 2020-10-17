@@ -1,0 +1,1 @@
+Function,:,foo,Body,:,a,=,a,[,x,+,y,*,z,],-,5,;,EndBody,.,<EOF>

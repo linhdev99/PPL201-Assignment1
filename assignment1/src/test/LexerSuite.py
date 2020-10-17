@@ -408,7 +408,7 @@ value2 = "string string string";
             154
         ))
 
-    def test_55_complex(self):
+    def test_55_for(self):
         self.assertTrue(TestLexer.checkLexeme(
             r"""
 For (i = 1, i < 5, 2) Do
@@ -419,3 +419,242 @@ EndFor.
             155
         ))
 
+    def test_56_function(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo2
+    Parameter: x
+    Body:
+        If n == 0 Then
+            Return 1;
+        Else
+            Return n * foo(n-1);
+        EndIf.
+    EndBody.    
+            """,
+            r"""Function,:,foo2,Parameter,:,x,Body,:,If,n,==,0,Then,Return,1,;,Else,Return,n,*,foo,(,n,-,1,),;,EndIf,.,EndBody,.,<EOF>""",
+            156
+        ))
+
+    def test_57_function(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+        x = x + 1;
+        str = "str;
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,Unclosed String: str;""",
+            157
+        ))
+
+    def test_58_function_str(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+        x = x + 1;
+        str = "str\n";
+        str2 = "sdas\a";
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,str2,=,Illegal Escape In String: sdas\a""",
+            158
+        ))
+
+    def test_59_function_cmt(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,EndBody,.,<EOF>""",
+            159
+        ))
+
+    def test_60_function_cmt(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    ** dong nay loi ne!
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,Unterminated Comment""",
+            160
+        ))
+
+    def test_61_function_cmt(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    ** --> dong nay loi ne! *
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,Unterminated Comment""",
+            161
+        ))
+
+    def test_62_function_cmt(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    *** --> xxxxxx! **
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,EndBody,.,<EOF>""",
+            162
+        ))
+
+    def test_63_function_cmt(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    ** This is a single-line comment. **
+    ** This is a
+     * multi-line
+     * comment.\a\a\a\a\ad\s\ad\asd\qw\eq\we\as\d
+     **
+    EndBody.  
+            """,
+            r"""Function,:,foo,Parameter,:,x,Body,:,x,=,x,+,1,;,str,=,str\n,;,EndBody,.,<EOF>""",
+            163
+        ))
+
+    def test_64_function(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Body:
+        a = a[x+y*z] - 5;
+    EndBody.
+            """,
+            r"""Function,:,foo,Body,:,a,=,a,[,x,+,y,*,z,],-,5,;,EndBody,.,<EOF>""",
+            164
+        ))
+
+    def test_65_function(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Function: foo
+    Body
+        s = "asdasdasd;fdfeasd\n\t\b";
+        q = "\n\t\b\\\\\\";
+        w = "qweasd
+        
+        
+        ";
+    EndBody.
+            """,
+            r"""Function,:,foo,Body,s,=,asdasdasd;fdfeasd\n\t\b,;,q,=,\n\t\b\\\\\\,;,w,=,Unclosed String: qweasd""",
+            165
+        ))
+
+    def test_66_err_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+\\ // / \
+            """,
+            r"""\,\,Error Token /""",
+            166
+        ))
+
+    def test_67_err_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+@aa2312
+            """,
+            r"""Error Token @""",
+            167
+        ))
+
+    def test_68_err_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
++22\t\t\t\t\t\t\t\t\t
+            """,
+            r"""+,22,\,t,\,t,\,t,\,t,\,t,\,t,\,t,\,t,\,t,<EOF>""",
+            168
+        ))
+
+    def test_69_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
++\.\.\.\.\.\.\.\.\.\.\.\.\\\\\
+            """,
+            r"""+,\.,\.,\.,\.,\.,\.,\.,\.,\.,\.,\.,\.,\,\,\,\,\,<EOF>""",
+            169
+        ))
+
+    def test_70_tok(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+%%%%%%%%%%%%%
+            """,
+            r"""%,%,%,%,%,%,%,%,%,%,%,%,%,<EOF>""",
+            170
+        ))
+
+    def test_71_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+// (,True,[ acb40 % For,),with
+= boolean .. p104c ] function do z71ae of < begin if break with of procedure b4169 break - of = = function div
+(* <= : a41aa,while,m8bcd .. E8869,,,string*)
+Else as If fbm While WhileEnd ... ,,, !!! && ||
+""",
+            r"""Error Token /""",
+            171
+        ))
+
+    def test_72_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+\\ (,True,[ acb40 % For,),with
+= boolean .. p104c ] function do z71ae of < begin if break with of procedure b4169 break - of = = function div
+(* <= : a41aa,while,m8bcd .. 1E8869,,,string*)
+Else as If fbm While asd- asd=sad 23 EndWhile ... ,,, !!! && ||
+""",
+            r"""\,\,(,,,True,,,[,acb40,%,For,,,),,,with,=,boolean,.,.,p104c,],function,do,z71ae,of,<,begin,if,break,with,of,procedure,b4169,break,-,of,=,=,function,div,(,*,<=,:,a41aa,,,while,,,m8bcd,.,.,1E8869,,,,,,,string,*,),Else,as,If,fbm,While,asd,-,asd,=,sad,23,EndWhile,.,.,.,,,,,,,!,!,!,&&,||,<EOF>""",
+            172
+        ))
+
+    def test_73_auto_gen(self):
+        self.assertTrue(TestLexer.checkLexeme(
+            r"""
+Else df [] f]d[f]f3] dfdf.af.df..f.d.f...fder243df 1.24 1.e23 \. sdasd2
+-13s 34 a_sda as23_34 s.
+= True False Else If sdm ><.,..12;;;;;::::sdasd"sad" 23.dfsdf +.*. -.+.s
+frwes das34 35446fgd 2 fadfsd65f eEES 1E32 
+()()()()()()(((()))){}{}{}[][][][{{()}}{) asd=asd=as=d2 && || ****
+            """,
+            r"""Else,df,[,],f,],d,[,f,],f3,],dfdf,.,af,.,df,.,.,f,.,d,.,f,.,.,.,fder243df,1.24,1.e23,\.,sdasd2,-,13,s,34,a_sda,as23_34,s,.,=,True,False,Else,If,sdm,>,<.,,,.,.,12,;,;,;,;,;,:,:,:,:,sdasd,sad,23.,dfsdf,+.,*.,-.,+.,s,frwes,das34,35446,fgd,2,fadfsd65f,eEES,1E32,(,),(,),(,),(,),(,),(,),(,(,(,(,),),),),{,},{,},{,},[,],[,],[,],[,{,{,(,),},},{,),asd,=,asd,=,as,=,d2,&&,||,<EOF>""",
+            173
+        ))

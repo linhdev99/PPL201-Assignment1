@@ -1,0 +1,11 @@
+
+Function: foo
+    Body
+        s = "asdasdasd;fdfeasd\n\t\b";
+        q = "\n\t\b\\\\\\";
+        w = "qweasd
+        
+        
+        ";
+    EndBody.
+            

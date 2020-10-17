@@ -1,0 +1,10 @@
+
+Function: foo
+    Parameter: x
+    Body:
+    ** chay thu thoi **
+        x = x + 1;
+        str = "str\n";
+    ** --> dong nay loi ne! *
+    EndBody.  
+            

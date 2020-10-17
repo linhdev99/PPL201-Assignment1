@@ -1,0 +1,11 @@
+
+Function: foo2
+    Parameter: x
+    Body:
+        If n == 0 Then
+            Return 1;
+        Else
+            Return n * foo(n-1);
+        EndIf.
+    EndBody.    
+            
