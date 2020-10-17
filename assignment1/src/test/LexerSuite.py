@@ -110,14 +110,6 @@ class LexerSuite(unittest.TestCase):
             r"""Hello, I'"m from Dong Thap!\n I'"m a student >.<! ^^,<EOF>""",
             122))
 
-    def test_string_0(self):
-        self.assertTrue(TestLexer.checkLexeme(
-            r"""
-"Hello, I'"m from Dong Thap!\n I'"m a student >.<! ^^"
-""",
-            r"""Hello, I'"m from Dong Thap!\n I'"m a student >.<! ^^,<EOF>""",
-            122))
-
     def test_id_6(self):
         self.assertTrue(TestLexer.checkLexeme(
             r"""
@@ -219,16 +211,6 @@ Var: a[5];
 
             r"Illegal Escape In String:  Hi Hi \m",
             133
-        ))
-
-    def test_illegal_2(self):
-        self.assertTrue(TestLexer.checkLexeme(
-            r"""
-illegal: "\a"
-""",
-
-            r'''illegal,:,Illegal Escape In String: \a''',
-            134
         ))
 
     def test_string_3(self):
