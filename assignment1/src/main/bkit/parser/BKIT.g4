@@ -33,36 +33,14 @@ program: main EOF;
 main: stmt*;
 var_declare_stmt: var_single
                 | var_list;
-
 var_single: var_normal SEMI;
-
 var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
-
 var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
-
 var_vt: scalar_var (COMMA scalar_var)*;
 var_vp: scalar_var
       | array_vp
       | exp;
-
-array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
-cb_value: LCB var_vp (COMMA var_vp)* RCB;
-
-//list_value: var_vp_int
-//          | var_vp_float
-//          | var_vp_string
-//          | array_vt;
-//list_value_sb: var_vp_int
-//             | array_vt
-//             | ID LP list_value RP;
-//
-//var_vp_int: INTLIT;
-//var_vp_float: FLOATLIT;
-//var_vp_string: STRINGLIT;
-//
-//array_vt: ID sb_value*;
-
-//sb_value: LSB list_value_sb RSB; // (COMMA list_value_sb)* RSB;
+array_vp: LCB var_vp (COMMA var_vp)* RCB;
 
 /**
  * 6 Statements and Control Flow

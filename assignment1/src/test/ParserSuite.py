@@ -43,3 +43,8 @@ Function: main
     EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,204))
+
+    def test_5_successfull(self):
+        input = r"""Var: x[1][2] = {{1},{1,2}};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,204))
