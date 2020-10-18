@@ -35,10 +35,11 @@ var_declare_stmt: var_single
                 | var_list;
 var_single: var_normal SEMI;
 var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
-var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
+var_normal: (VAR COLON)? var_normal_list (COMMA var_normal_list)*;
+var_normal_list: var_vt (EQ var_vp)?;
 var_vt: scalar_var (COMMA scalar_var)*;
-var_vp: scalar_var
-      | array_vp
+var_vp: array_vp
+      | scalar_var
       | exp;
 array_vp: LCB var_vp (COMMA var_vp)* RCB;
 

@@ -47,4 +47,25 @@ Function: main
     def test_5_successfull(self):
         input = r"""Var: x[1][2] = {{1},{1,2}};"""
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect,204))
+        self.assertTrue(TestParser.checkParser(input,expect,205))
+
+    def test_6_successfull(self):
+        input = r"""Var: x;
+Var: y = 1;
+Var: z[5];"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,206))
+
+    def test_7_successfull(self):
+        input = r"""Var: x, a;
+Var: y = 1, b;
+Var: z[5], c = z[1];"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,207))
+
+    def test_8_successfull(self):
+        input = r"""Var: x, a;
+Var: y = 1, b[3] = {1,2,3};
+Var: z[5], c = z[1];"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,208))
