@@ -20,6 +20,26 @@ Parameter: x,y[5]
 Body:
     Var: x = 5;
     x[5] = {1,2,3,4,x};
-Endbody."""
+EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,203))
+
+    def test_4_successfull(self):
+        input = r"""Var: x;
+Function: fact
+    Parameter: n
+    Body:
+        If n == 0 Then
+            Return 1;
+        Else
+            Return n * fact(n-1);
+        EndIf.
+    EndBody.
+
+Function: main
+    Body:
+        x = 10;
+        fact(x);
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,204))

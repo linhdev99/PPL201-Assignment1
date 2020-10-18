@@ -28,7 +28,6 @@ options{
 	language=Python3;
 }
 
-//program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
 main: stmt*;
@@ -41,31 +40,29 @@ var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
 
 var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 
-var_vt: array_vt (COMMA array_vt)*;
-var_vp: list_value
+var_vt: scalar_var (COMMA scalar_var)*;
+var_vp: scalar_var
       | array_vp
       | exp;
-list_value: var_vp_int
-          | var_vp_float
-          | var_vp_string
-          | array_vt;
-list_value_sb: var_vp_int
-             | array_vt
-             | ID LP list_value RP;
 
-var_vp_int: INTLIT;
-var_vp_float: FLOATLIT;
-var_vp_string: STRINGLIT;
-
-array_vt: ID sb_value*;
 array_vp: (cb_value | LCB cb_value (COMMA cb_value)+ RCB);
-
-sb_value: LSB list_value_sb RSB; // (COMMA list_value_sb)* RSB;
 cb_value: LCB var_vp (COMMA var_vp)* RCB;
 
-func_declare: FUNCTION COLON ID parameter_func? body_declare;
-parameter_func: PARAMETER COLON var_parameter (COMMA var_parameter)*;
-var_parameter: ID sb_value?;
+//list_value: var_vp_int
+//          | var_vp_float
+//          | var_vp_string
+//          | array_vt;
+//list_value_sb: var_vp_int
+//             | array_vt
+//             | ID LP list_value RP;
+//
+//var_vp_int: INTLIT;
+//var_vp_float: FLOATLIT;
+//var_vp_string: STRINGLIT;
+//
+//array_vt: ID sb_value*;
+
+//sb_value: LSB list_value_sb RSB; // (COMMA list_value_sb)* RSB;
 
 /**
  * 6 Statements and Control Flow
@@ -83,9 +80,16 @@ stmt: var_declare_stmt
     | return_stmt
     ;
 
+// body declare
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
-// if statement
+// function declare
+func_declare: FUNCTION COLON ID parameter_func? body_declare;
+
+// parameter declare
+parameter_func: PARAMETER COLON scalar_var (COMMA scalar_var)*;
+
+// if-elseif-else statement
 if_stmt: IF exp THEN stmt* elseif_stmt* else_stmt? ENDIF DOT;
 elseif_stmt: ELSEIF exp THEN stmt*;
 else_stmt: ELSE stmt*;
@@ -94,8 +98,13 @@ else_stmt: ELSE stmt*;
 for_stmt: FOR LP scalar_var EQ exp COMMA conditionExpr COMMA updateExpr RP DO stmt* ENDFOR DOT;
 
 //scalar-variable
-scalar_var: ID (LSB (scalar_var | exp)+ RSB)*;
+scalar_var: ID index_var*;
+index_var: LSB (scalar_var | exp)+ RSB;
+
+//condition expression
 conditionExpr: exp;
+
+//update expression
 updateExpr: exp;
 
 // while statement
@@ -111,7 +120,7 @@ break_stmt: BREAK SEMI;
 continue_stmt: CONTINUE SEMI;
 
 //Return statement
-return_stmt: RETURN SEMI;
+return_stmt: RETURN (scalar_var | all_lit | exp)? SEMI;
 
 //Call statment
 func_call: ID LP (exp (COMMA exp)*)? RP;
@@ -125,13 +134,12 @@ exp3: exp3 ( MUL | DIV | MOD) exp4 | exp4;
 exp4: (NOT) exp4 | exp5;
 exp5: (SUB) exp5 | exp6;
 exp6: exp6 op_index | operands_int;
-
 op_index: LSB exp RSB;
-
-operands_int: all_lit
-            | scalar_var
+operands_int: LP exp RP
             | func_call
-            | LP exp RP;
+            | all_lit
+            | ID
+            ;
 
 //operand: all_literal | func_call_exp | var_id | LP expression RP ;
 all_lit: INTLIT | FLOATLIT | STRINGLIT | BOOLEANLIT;
