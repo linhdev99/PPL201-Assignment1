@@ -111,13 +111,13 @@ exp2: exp2 (ADD | SUB | ADDDOT | SUBDOT) exp3 | exp3;
 exp3: exp3 ( MUL | DIV | MOD) exp4 | exp4;
 exp4: (NOT) exp4 | exp5;
 exp5: (SUB) exp5 | exp6;
-exp6: exp6 op_index | operands_int;
+exp6: exp6 op_index | operands;
 op_index: LSB exp RSB;
-operands_int: LP exp RP
-            | func_call
-            | all_lit
-            | ID
-            ;
+operands: LP exp RP
+        | func_call
+        | all_lit
+        | ID
+        ;
 
 //operand: all_literal | func_call_exp | var_id | LP expression RP ;
 all_lit: INTLIT | FLOATLIT | STRINGLIT | BOOLEANLIT;

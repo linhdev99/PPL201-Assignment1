@@ -189,8 +189,8 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKITParser#operands_int.
-    def visitOperands_int(self, ctx:BKITParser.Operands_intContext):
+    # Visit a parse tree produced by BKITParser#operands.
+    def visitOperands(self, ctx:BKITParser.OperandsContext):
         return self.visitChildren(ctx)
 
 

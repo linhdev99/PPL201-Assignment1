@@ -265,7 +265,7 @@ class BKITParser ( Parser ):
     RULE_exp5 = 33
     RULE_exp6 = 34
     RULE_op_index = 35
-    RULE_operands_int = 36
+    RULE_operands = 36
     RULE_all_lit = 37
 
     ruleNames =  [ "program", "main", "var_declare_stmt", "var_single", 
@@ -275,7 +275,7 @@ class BKITParser ( Parser ):
                    "index_var", "conditionExpr", "updateExpr", "while_stmt", 
                    "doWhile_stmt", "break_stmt", "continue_stmt", "return_stmt", 
                    "func_call", "call_stmt", "exp", "exp1", "exp2", "exp3", 
-                   "exp4", "exp5", "exp6", "op_index", "operands_int", "all_lit" ]
+                   "exp4", "exp5", "exp6", "op_index", "operands", "all_lit" ]
 
     EOF = Token.EOF
     RELATIONAL=1
@@ -2734,8 +2734,8 @@ class BKITParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def operands_int(self):
-            return self.getTypedRuleContext(BKITParser.Operands_intContext,0)
+        def operands(self):
+            return self.getTypedRuleContext(BKITParser.OperandsContext,0)
 
 
         def exp6(self):
@@ -2767,7 +2767,7 @@ class BKITParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 371
-            self.operands_int()
+            self.operands()
             self._ctx.stop = self._input.LT(-1)
             self.state = 377
             self._errHandler.sync(self)
@@ -2847,7 +2847,7 @@ class BKITParser ( Parser ):
         return localctx
 
 
-    class Operands_intContext(ParserRuleContext):
+    class OperandsContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2875,21 +2875,21 @@ class BKITParser ( Parser ):
             return self.getToken(BKITParser.ID, 0)
 
         def getRuleIndex(self):
-            return BKITParser.RULE_operands_int
+            return BKITParser.RULE_operands
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitOperands_int" ):
-                return visitor.visitOperands_int(self)
+            if hasattr( visitor, "visitOperands" ):
+                return visitor.visitOperands(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def operands_int(self):
+    def operands(self):
 
-        localctx = BKITParser.Operands_intContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 72, self.RULE_operands_int)
+        localctx = BKITParser.OperandsContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 72, self.RULE_operands)
         try:
             self.state = 391
             self._errHandler.sync(self)
