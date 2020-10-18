@@ -31,7 +31,7 @@ options{
 //program  : VAR COLON ID SEMI EOF ;
 program: main EOF;
 
-    main: stmt*;
+main: stmt*;
 var_declare_stmt: var_single
                 | var_list;
 
@@ -44,7 +44,7 @@ var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 var_vt: array_vt (COMMA array_vt)*;
 var_vp: list_value
       | array_vp
-      | exp_int;
+      | exp1_int;
 list_value: var_vp_int
           | var_vp_float
           | var_vp_string
@@ -78,32 +78,37 @@ stmt: var_declare_stmt
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
 //exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
+//expression integer
+exp1_int: exp2_int RELATIONAL_INT exp2_int | exp2_int ;
+exp2_int: exp2_int ( AND | OR ) exp3_int | exp3_int;
+exp3_int: exp3_int (ADD | SUB) exp4_int | exp4_int;
+exp4_int: exp4_int ( MUL | DIV | MOD) exp5_int | exp5_int;
+exp5_int: (NOT) exp5_int | exp6_int;
+exp6_int: (SUB) exp6_int | exp7_int;
+exp7_int: exp7_int op_index | exp8_int;
+exp8_int: op_func | operands_int;
 
-exp_int: exp2 ( EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ) exp2 | exp2 ;
+exp1_float: RELATIONAL_FLOAT;
 
-exp2: exp2 ( AND | OR ) exp3 | exp3;
 
-exp3: exp3 (ADD | SUB) exp4 | exp4;
-
-exp4: exp4 ( MUL | DIV | MOD) exp5 | exp5;
-
-exp5: (NOT) exp5 | exp6;
-
-exp6: (SUB) exp6 | exp7;
-
-exp7: exp7 op_index | exp8;
-
-exp8: op_func | operands;
-
-op_index: ID LSB exp_int RSB;
+op_index: LSB exp1_int RSB;
 
 op_func: ID LP exps_list? RP;
 
-operands: INTLIT
-        | BOOLEANLIT
-        | ID;
+operands_int: INTLIT
+            | BOOLEANLIT
+            | ID;
 
-exps_list: exp_int (COMMA exp_int)*;
+RELATIONAL_INT:  EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ;
+RELATIONAL_FLOAT: EQINT | NEQF | GTF | LTF | GTEF | LTEF ;
+
+exps_list: exp1_int (COMMA exp1_int)*;
+exp: exp1_int
+   | exp1_float;
+
+if_stmt: IF exp THEN stmt  else_stmt? DOT.;
+elseif_stmt: ELSEIF;
+else_stmt: ELSE stmt;
 
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
@@ -267,7 +272,7 @@ ERROR_CHAR: .
 
 fragment STR_CHAR: ~[\b\f\r\n\t'"\\] | ESC_SEQ ;
 fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
-fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\] | '\'';
+fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\] | '\'' | '\'' ~["];
 fragment UNT_CMT: ~[*] ;
 
 //fragment A: [aA];

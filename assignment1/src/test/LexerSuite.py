@@ -219,7 +219,7 @@ Var: a[5];
 " abc ' xyz "
 """,
 
-            "Illegal Escape In String:  abc '",
+            "Illegal Escape In String:  abc ' ",
             134
         ))
 
