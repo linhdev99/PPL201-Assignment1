@@ -44,7 +44,7 @@ var_normal: (VAR COLON)? var_vt (EQ var_vp (COMMA var_vp)*)?;
 var_vt: array_vt (COMMA array_vt)*;
 var_vp: list_value
       | array_vp
-      | exp1_int;
+      | exp;
 list_value: var_vp_int
           | var_vp_float
           | var_vp_string
@@ -66,18 +66,61 @@ cb_value: LCB var_vp (COMMA var_vp)* RCB;
 func_declare: FUNCTION COLON ID parameter_func? body_declare;
 parameter_func: PARAMETER COLON var_parameter (COMMA var_parameter)*;
 var_parameter: ID sb_value?;
-func_call: ID LP list_value? RP SEMI;
 
 /**
  * 6 Statements and Control Flow
  */
 stmt: var_declare_stmt
     | func_declare
-    | func_call;
+    | call_stmt
+    | exp
+    | if_stmt
+    | for_stmt
+    | while_stmt
+    | doWhile_stmt
+    | break_stmt
+    | continue_stmt
+    | return_stmt
+    ;
 
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
-//exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
+// if statement
+if_stmt: IF exp THEN stmt* elseif_stmt* else_stmt? ENDIF DOT;
+elseif_stmt: ELSEIF exp THEN stmt*;
+else_stmt: ELSE stmt*;
+
+// for statement
+for_stmt: FOR LP scalar_var EQ exp COMMA conditionExpr COMMA updateExpr RP DO stmt* ENDFOR DOT;
+
+//scalar-variable
+scalar_var: ID (LSB (scalar_var | exp)+ RSB)*;
+conditionExpr: exp;
+updateExpr: exp;
+
+// while statement
+while_stmt: WHILE exp DO stmt* ENDWHILE DOT;
+
+// Do-while statement
+doWhile_stmt: DO stmt* WHILE exp ENDDO DOT;
+
+//Break statement
+break_stmt: BREAK SEMI;
+
+//Continue statement
+continue_stmt: CONTINUE SEMI;
+
+//Return statement
+return_stmt: RETURN SEMI;
+
+//Call statment
+func_call: ID LP (exp (COMMA exp)*)? RP;
+call_stmt: func_call SEMI;
+
+//expression
+exp: exp1_int
+   | exp1_float;
+
 //expression integer
 exp1_int: exp2_int RELATIONAL_INT exp2_int | exp2_int ;
 exp2_int: exp2_int ( AND | OR ) exp3_int | exp3_int;
@@ -86,29 +129,21 @@ exp4_int: exp4_int ( MUL | DIV | MOD) exp5_int | exp5_int;
 exp5_int: (NOT) exp5_int | exp6_int;
 exp6_int: (SUB) exp6_int | exp7_int;
 exp7_int: exp7_int op_index | exp8_int;
-exp8_int: op_func | operands_int;
+exp8_int: func_call | operands_int;
 
 exp1_float: RELATIONAL_FLOAT;
 
-
 op_index: LSB exp1_int RSB;
-
-op_func: ID LP exps_list? RP;
 
 operands_int: INTLIT
             | BOOLEANLIT
             | ID;
 
+//operand: all_literal | func_call_exp | var_id | LP expression RP ;
+all_lit: INTLIT | FLOATLIT | STRINGLIT | BOOLEANLIT;
+
 RELATIONAL_INT:  EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ;
 RELATIONAL_FLOAT: EQINT | NEQF | GTF | LTF | GTEF | LTEF ;
-
-exps_list: exp1_int (COMMA exp1_int)*;
-exp: exp1_int
-   | exp1_float;
-
-if_stmt: IF exp THEN stmt  else_stmt? DOT.;
-elseif_stmt: ELSEIF;
-else_stmt: ELSE stmt;
 
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
