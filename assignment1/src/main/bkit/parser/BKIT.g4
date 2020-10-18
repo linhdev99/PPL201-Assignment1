@@ -118,30 +118,25 @@ func_call: ID LP (exp (COMMA exp)*)? RP;
 call_stmt: func_call SEMI;
 
 //expression
-exp: exp1_int
-   | exp1_float;
+exp: exp1 RELATIONAL exp1 | exp1 ;
+exp1: exp1 ( AND | OR ) exp2 | exp2;
+exp2: exp2 (ADD | SUB | ADDDOT | SUBDOT) exp3 | exp3;
+exp3: exp3 ( MUL | DIV | MOD) exp4 | exp4;
+exp4: (NOT) exp4 | exp5;
+exp5: (SUB) exp5 | exp6;
+exp6: exp6 op_index | operands_int;
 
-//expression integer
-exp1_int: exp2_int RELATIONAL_INT exp2_int | exp2_int ;
-exp2_int: exp2_int ( AND | OR ) exp3_int | exp3_int;
-exp3_int: exp3_int (ADD | SUB) exp4_int | exp4_int;
-exp4_int: exp4_int ( MUL | DIV | MOD) exp5_int | exp5_int;
-exp5_int: (NOT) exp5_int | exp6_int;
-exp6_int: (SUB) exp6_int | exp7_int;
-exp7_int: exp7_int op_index | exp8_int;
-exp8_int: func_call | operands_int;
+op_index: LSB exp RSB;
 
-exp1_float: RELATIONAL_FLOAT;
-
-op_index: LSB exp1_int RSB;
-
-operands_int: INTLIT
-            | BOOLEANLIT
-            | ID;
+operands_int: all_lit
+            | scalar_var
+            | func_call
+            | LP exp RP;
 
 //operand: all_literal | func_call_exp | var_id | LP expression RP ;
 all_lit: INTLIT | FLOATLIT | STRINGLIT | BOOLEANLIT;
 
+RELATIONAL: RELATIONAL_FLOAT | RELATIONAL_INT;
 RELATIONAL_INT:  EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ;
 RELATIONAL_FLOAT: EQINT | NEQF | GTF | LTF | GTEF | LTEF ;
 
