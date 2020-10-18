@@ -109,7 +109,7 @@ call_stmt: func_call SEMI;
 exp: exp1 RELATIONAL exp1 | exp1 ;
 exp1: exp1 ( AND | OR ) exp2 | exp2;
 exp2: exp2 (ADD | SUB | ADDDOT | SUBDOT) exp3 | exp3;
-exp3: exp3 ( MUL | DIV | MOD) exp4 | exp4;
+exp3: exp3 ( MUL | DIV | MOD | MULDOT | DIVDOT) exp4 | exp4;
 exp4: (NOT) exp4 | exp5;
 exp5: (SUB) exp5 | exp6;
 exp6: exp6 op_index | operands;

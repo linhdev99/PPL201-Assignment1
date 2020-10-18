@@ -69,3 +69,49 @@ Var: y = 1, b[3] = {1,2,3};
 Var: z[5], c = z[1];"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,208))
+
+    def test_9_successfull(self):
+        input = r"""Var: x, a, id = 1710165;
+Var: y = 1, b[3] = {1,2,3};
+Var: z[5], c = z[1];
+Var: sName = "Huynh Pham Phuoc Linh";"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,209))
+
+    def test_10_successfull(self):
+        input = r"""Var: x, a, id = 1710165;
+Var: y = 1 + 2, b[3] = {1,2,3};
+Var: z[5], c = z[1];
+Var: sName = "Huynh Pham Phuoc Linh", sName = "Linh";"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,210))
+
+    def test_11_successfull(self):
+        input = r"""Var: x, a, id = 1710165;
+Var: y = 1 + 2, b[3] = {1,2,3};
+Var: s[3] = {1+2,x+y\b[1],123*x};
+Var: z[5], c = z[1];
+Var: sName = "Huynh Pham Phuoc Linh", sName = "Linh";"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,211))
+
+    def test_12_successfull(self):
+        input = r"""Var: x[2][3] = {{1,2},{2,3,4}};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,212))
+
+    def test_13_successfull(self):
+        input = r"""Var: x[2] = {1+2*3,4.5\.1.1e3};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,213))
+
+    def test_14_successfull(self):
+        input = r"""Var: x[2] = {1+2*3,4.5\.1.1e3};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,214))
+
+    def test_15_successfull(self):
+        input = r"""Var: x[2] = {1+2*3,4.5\.1.1e3+.1.-.2.3*.y};
+Var: x[1][1] = {{1.2+.2e3},{12e-4*.12.9e-3}};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,215))
