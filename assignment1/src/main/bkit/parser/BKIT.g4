@@ -237,10 +237,10 @@ ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL
 		raise IllegalEscape(value[1:])
 	}
 	;
-UNCLOSE_STRING: '"' STR_CHAR* ([\n\f\r\b\t'\\] | EOF)
+UNCLOSE_STRING: '"' STR_CHAR* ([\n\f\r\b\t\\] | '\'"' | EOF)
 	{
 		value = str(self.text)
-		possible = ['\b', '\t', '\n', '\f', '\r', "'", '\\']
+		possible = ['\b', '\t', '\n', '\f', '\r', '\'"', '\\']
 		if value[-1] in possible:
 			raise UncloseString(value[1:-1])
 		else:
@@ -265,9 +265,9 @@ ERROR_CHAR: .
 	}
 	;
 
-fragment STR_CHAR: ~[\b\f\r\n\t"'\\] | ESC_SEQ ;
+fragment STR_CHAR: ~[\b\f\r\n\t'"\\] | ESC_SEQ ;
 fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
-fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\];
+fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\] | '\'';
 fragment UNT_CMT: ~[*] ;
 
 //fragment A: [aA];
