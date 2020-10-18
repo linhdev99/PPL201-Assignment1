@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3G")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3F")
         buf.write("\u0191\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -52,31 +52,31 @@ def serializedATN():
         buf.write("\13%\3&\3&\3&\3&\3\'\3\'\3\'\3\'\3\'\3\'\3\'\5\'\u018d")
         buf.write("\n\'\3(\3(\3(\2\6>@BH)\2\4\6\b\n\f\16\20\22\24\26\30\32")
         buf.write("\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLN\2\6\3\2\36\37")
-        buf.write("\4\2 !%&\4\2\"$\'(\4\2?AFF\2\u019a\2P\3\2\2\2\4V\3\2\2")
-        buf.write("\2\6[\3\2\2\2\b]\3\2\2\2\n`\3\2\2\2\fp\3\2\2\2\16z\3\2")
-        buf.write("\2\2\20\177\3\2\2\2\22\u008a\3\2\2\2\24\u008c\3\2\2\2")
-        buf.write("\26\u00a2\3\2\2\2\30\u00a4\3\2\2\2\32\u00af\3\2\2\2\34")
-        buf.write("\u00b7\3\2\2\2\36\u00c1\3\2\2\2 \u00d6\3\2\2\2\"\u00df")
-        buf.write("\3\2\2\2$\u00e6\3\2\2\2&\u00fa\3\2\2\2(\u0101\3\2\2\2")
-        buf.write("*\u010a\3\2\2\2,\u010c\3\2\2\2.\u010e\3\2\2\2\60\u011a")
-        buf.write("\3\2\2\2\62\u0126\3\2\2\2\64\u0129\3\2\2\2\66\u012c\3")
-        buf.write("\2\2\28\u0134\3\2\2\2:\u0142\3\2\2\2<\u014a\3\2\2\2>\u014c")
-        buf.write("\3\2\2\2@\u0157\3\2\2\2B\u0162\3\2\2\2D\u0170\3\2\2\2")
-        buf.write("F\u0175\3\2\2\2H\u0177\3\2\2\2J\u0181\3\2\2\2L\u018c\3")
-        buf.write("\2\2\2N\u018e\3\2\2\2PQ\5\4\3\2QR\7\2\2\3R\3\3\2\2\2S")
-        buf.write("U\5\26\f\2TS\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2\2W\5")
-        buf.write("\3\2\2\2XV\3\2\2\2Y\\\5\b\5\2Z\\\5\n\6\2[Y\3\2\2\2[Z\3")
-        buf.write("\2\2\2\\\7\3\2\2\2]^\5\f\7\2^_\7;\2\2_\t\3\2\2\2`a\7\34")
-        buf.write("\2\2ab\7<\2\2bc\5\20\t\2cd\7;\2\2de\7\n\2\2eg\7<\2\2f")
-        buf.write("h\5\b\5\2gf\3\2\2\2hi\3\2\2\2ig\3\2\2\2ij\3\2\2\2jk\3")
-        buf.write("\2\2\2kl\7\13\2\2lm\7>\2\2m\13\3\2\2\2no\7\34\2\2oq\7")
-        buf.write("<\2\2pn\3\2\2\2pq\3\2\2\2qr\3\2\2\2rw\5\16\b\2st\7=\2")
-        buf.write("\2tv\5\16\b\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3\2\2\2")
-        buf.write("x\r\3\2\2\2yw\3\2\2\2z}\5\20\t\2{|\7)\2\2|~\5\22\n\2}")
-        buf.write("{\3\2\2\2}~\3\2\2\2~\17\3\2\2\2\177\u0084\5&\24\2\u0080")
-        buf.write("\u0081\7=\2\2\u0081\u0083\5&\24\2\u0082\u0080\3\2\2\2")
-        buf.write("\u0083\u0086\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0085\3")
-        buf.write("\2\2\2\u0085\21\3\2\2\2\u0086\u0084\3\2\2\2\u0087\u008b")
+        buf.write("\4\2 !%&\4\2\"$\'(\5\2\32\33?@EE\2\u019a\2P\3\2\2\2\4")
+        buf.write("V\3\2\2\2\6[\3\2\2\2\b]\3\2\2\2\n`\3\2\2\2\fp\3\2\2\2")
+        buf.write("\16z\3\2\2\2\20\177\3\2\2\2\22\u008a\3\2\2\2\24\u008c")
+        buf.write("\3\2\2\2\26\u00a2\3\2\2\2\30\u00a4\3\2\2\2\32\u00af\3")
+        buf.write("\2\2\2\34\u00b7\3\2\2\2\36\u00c1\3\2\2\2 \u00d6\3\2\2")
+        buf.write("\2\"\u00df\3\2\2\2$\u00e6\3\2\2\2&\u00fa\3\2\2\2(\u0101")
+        buf.write("\3\2\2\2*\u010a\3\2\2\2,\u010c\3\2\2\2.\u010e\3\2\2\2")
+        buf.write("\60\u011a\3\2\2\2\62\u0126\3\2\2\2\64\u0129\3\2\2\2\66")
+        buf.write("\u012c\3\2\2\28\u0134\3\2\2\2:\u0142\3\2\2\2<\u014a\3")
+        buf.write("\2\2\2>\u014c\3\2\2\2@\u0157\3\2\2\2B\u0162\3\2\2\2D\u0170")
+        buf.write("\3\2\2\2F\u0175\3\2\2\2H\u0177\3\2\2\2J\u0181\3\2\2\2")
+        buf.write("L\u018c\3\2\2\2N\u018e\3\2\2\2PQ\5\4\3\2QR\7\2\2\3R\3")
+        buf.write("\3\2\2\2SU\5\26\f\2TS\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3")
+        buf.write("\2\2\2W\5\3\2\2\2XV\3\2\2\2Y\\\5\b\5\2Z\\\5\n\6\2[Y\3")
+        buf.write("\2\2\2[Z\3\2\2\2\\\7\3\2\2\2]^\5\f\7\2^_\7;\2\2_\t\3\2")
+        buf.write("\2\2`a\7\34\2\2ab\7<\2\2bc\5\20\t\2cd\7;\2\2de\7\n\2\2")
+        buf.write("eg\7<\2\2fh\5\b\5\2gf\3\2\2\2hi\3\2\2\2ig\3\2\2\2ij\3")
+        buf.write("\2\2\2jk\3\2\2\2kl\7\13\2\2lm\7>\2\2m\13\3\2\2\2no\7\34")
+        buf.write("\2\2oq\7<\2\2pn\3\2\2\2pq\3\2\2\2qr\3\2\2\2rw\5\16\b\2")
+        buf.write("st\7=\2\2tv\5\16\b\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3")
+        buf.write("\2\2\2x\r\3\2\2\2yw\3\2\2\2z}\5\20\t\2{|\7)\2\2|~\5\22")
+        buf.write("\n\2}{\3\2\2\2}~\3\2\2\2~\17\3\2\2\2\177\u0084\5&\24\2")
+        buf.write("\u0080\u0081\7=\2\2\u0081\u0083\5&\24\2\u0082\u0080\3")
+        buf.write("\2\2\2\u0083\u0086\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0085")
+        buf.write("\3\2\2\2\u0085\21\3\2\2\2\u0086\u0084\3\2\2\2\u0087\u008b")
         buf.write("\5\24\13\2\u0088\u008b\5&\24\2\u0089\u008b\5<\37\2\u008a")
         buf.write("\u0087\3\2\2\2\u008a\u0088\3\2\2\2\u008a\u0089\3\2\2\2")
         buf.write("\u008b\23\3\2\2\2\u008c\u008d\7\67\2\2\u008d\u0092\5\22")
@@ -97,7 +97,7 @@ def serializedATN():
         buf.write("\2\u00a9\u00a7\3\2\2\2\u00a9\u00aa\3\2\2\2\u00aa\u00ac")
         buf.write("\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ac\u00ad\7\13\2\2\u00ad")
         buf.write("\u00ae\7>\2\2\u00ae\31\3\2\2\2\u00af\u00b0\7\b\2\2\u00b0")
-        buf.write("\u00b1\7<\2\2\u00b1\u00b3\7B\2\2\u00b2\u00b4\5\34\17\2")
+        buf.write("\u00b1\7<\2\2\u00b1\u00b3\7A\2\2\u00b2\u00b4\5\34\17\2")
         buf.write("\u00b3\u00b2\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\u00b5\3")
         buf.write("\2\2\2\u00b5\u00b6\5\30\r\2\u00b6\33\3\2\2\2\u00b7\u00b8")
         buf.write("\7\t\2\2\u00b8\u00b9\7<\2\2\u00b9\u00be\5&\24\2\u00ba")
@@ -127,7 +127,7 @@ def serializedATN():
         buf.write("\u00f6\3\2\2\2\u00f4\u00f2\3\2\2\2\u00f4\u00f5\3\2\2\2")
         buf.write("\u00f5\u00f7\3\2\2\2\u00f6\u00f4\3\2\2\2\u00f7\u00f8\7")
         buf.write("\22\2\2\u00f8\u00f9\7>\2\2\u00f9%\3\2\2\2\u00fa\u00fe")
-        buf.write("\7B\2\2\u00fb\u00fd\5(\25\2\u00fc\u00fb\3\2\2\2\u00fd")
+        buf.write("\7A\2\2\u00fb\u00fd\5(\25\2\u00fc\u00fb\3\2\2\2\u00fd")
         buf.write("\u0100\3\2\2\2\u00fe\u00fc\3\2\2\2\u00fe\u00ff\3\2\2\2")
         buf.write("\u00ff\'\3\2\2\2\u0100\u00fe\3\2\2\2\u0101\u0104\79\2")
         buf.write("\2\u0102\u0105\5&\24\2\u0103\u0105\5<\37\2\u0104\u0102")
@@ -150,7 +150,7 @@ def serializedATN():
         buf.write("\5&\24\2\u012e\u0131\5N(\2\u012f\u0131\5<\37\2\u0130\u012d")
         buf.write("\3\2\2\2\u0130\u012e\3\2\2\2\u0130\u012f\3\2\2\2\u0130")
         buf.write("\u0131\3\2\2\2\u0131\u0132\3\2\2\2\u0132\u0133\7;\2\2")
-        buf.write("\u0133\67\3\2\2\2\u0134\u0135\7B\2\2\u0135\u013e\7\65")
+        buf.write("\u0133\67\3\2\2\2\u0134\u0135\7A\2\2\u0135\u013e\7\65")
         buf.write("\2\2\u0136\u013b\5<\37\2\u0137\u0138\7=\2\2\u0138\u013a")
         buf.write("\5<\37\2\u0139\u0137\3\2\2\2\u013a\u013d\3\2\2\2\u013b")
         buf.write("\u0139\3\2\2\2\u013b\u013c\3\2\2\2\u013c\u013f\3\2\2\2")
@@ -184,7 +184,7 @@ def serializedATN():
         buf.write("\5<\37\2\u0183\u0184\7:\2\2\u0184K\3\2\2\2\u0185\u0186")
         buf.write("\7\65\2\2\u0186\u0187\5<\37\2\u0187\u0188\7\66\2\2\u0188")
         buf.write("\u018d\3\2\2\2\u0189\u018d\58\35\2\u018a\u018d\5N(\2\u018b")
-        buf.write("\u018d\7B\2\2\u018c\u0185\3\2\2\2\u018c\u0189\3\2\2\2")
+        buf.write("\u018d\7A\2\2\u018c\u0185\3\2\2\2\u018c\u0189\3\2\2\2")
         buf.write("\u018c\u018a\3\2\2\2\u018c\u018b\3\2\2\2\u018dM\3\2\2")
         buf.write("\2\u018e\u018f\t\5\2\2\u018fO\3\2\2\2%V[ipw}\u0084\u008a")
         buf.write("\u0092\u00a2\u00a9\u00b3\u00be\u00c7\u00cd\u00d1\u00dc")
@@ -226,9 +226,8 @@ class BKITParser ( Parser ):
                       "LTINT", "LTEINT", "GTINT", "GTEINT", "NEQF", "LTF", 
                       "LTEF", "GTF", "GTEF", "LP", "RP", "LCB", "RCB", "LSB", 
                       "RSB", "SEMI", "COLON", "COMMA", "DOT", "INTLIT", 
-                      "FLOATLIT", "BOOLEANLIT", "ID", "ILLEGAL_ESCAPE", 
-                      "UNCLOSE_STRING", "UNTERMINATED_COMMENT", "STRINGLIT", 
-                      "ERROR_CHAR" ]
+                      "FLOATLIT", "ID", "ILLEGAL_ESCAPE", "UNCLOSE_STRING", 
+                      "UNTERMINATED_COMMENT", "STRINGLIT", "ERROR_CHAR" ]
 
     RULE_program = 0
     RULE_main = 1
@@ -343,13 +342,12 @@ class BKITParser ( Parser ):
     DOT=60
     INTLIT=61
     FLOATLIT=62
-    BOOLEANLIT=63
-    ID=64
-    ILLEGAL_ESCAPE=65
-    UNCLOSE_STRING=66
-    UNTERMINATED_COMMENT=67
-    STRINGLIT=68
-    ERROR_CHAR=69
+    ID=63
+    ILLEGAL_ESCAPE=64
+    UNCLOSE_STRING=65
+    UNTERMINATED_COMMENT=66
+    STRINGLIT=67
+    ERROR_CHAR=68
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -439,7 +437,7 @@ class BKITParser ( Parser ):
             self.state = 84
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 81
                 self.stmt()
                 self.state = 86
@@ -1178,7 +1176,7 @@ class BKITParser ( Parser ):
             self.state = 167
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 164
                 self.stmt()
                 self.state = 169
@@ -1404,7 +1402,7 @@ class BKITParser ( Parser ):
             self.state = 197
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 194
                 self.stmt()
                 self.state = 199
@@ -1493,7 +1491,7 @@ class BKITParser ( Parser ):
             self.state = 218
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 215
                 self.stmt()
                 self.state = 220
@@ -1549,7 +1547,7 @@ class BKITParser ( Parser ):
             self.state = 225
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 222
                 self.stmt()
                 self.state = 227
@@ -1665,7 +1663,7 @@ class BKITParser ( Parser ):
             self.state = 242
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 239
                 self.stmt()
                 self.state = 244
@@ -1809,7 +1807,7 @@ class BKITParser ( Parser ):
                 self.state = 260 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (((((_la - 27)) & ~0x3f) == 0 and ((1 << (_la - 27)) & ((1 << (BKITParser.NOT - 27)) | (1 << (BKITParser.SUB - 27)) | (1 << (BKITParser.LP - 27)) | (1 << (BKITParser.INTLIT - 27)) | (1 << (BKITParser.FLOATLIT - 27)) | (1 << (BKITParser.BOOLEANLIT - 27)) | (1 << (BKITParser.ID - 27)) | (1 << (BKITParser.STRINGLIT - 27)))) != 0)):
+                if not (((((_la - 24)) & ~0x3f) == 0 and ((1 << (_la - 24)) & ((1 << (BKITParser.TRUE - 24)) | (1 << (BKITParser.FALSE - 24)) | (1 << (BKITParser.NOT - 24)) | (1 << (BKITParser.SUB - 24)) | (1 << (BKITParser.LP - 24)) | (1 << (BKITParser.INTLIT - 24)) | (1 << (BKITParser.FLOATLIT - 24)) | (1 << (BKITParser.ID - 24)) | (1 << (BKITParser.STRINGLIT - 24)))) != 0)):
                     break
 
             self.state = 262
@@ -1958,7 +1956,7 @@ class BKITParser ( Parser ):
             self.state = 274
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.BOOLEANLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
+            while ((((_la - 6)) & ~0x3f) == 0 and ((1 << (_la - 6)) & ((1 << (BKITParser.FUNCTION - 6)) | (1 << (BKITParser.IF - 6)) | (1 << (BKITParser.FOR - 6)) | (1 << (BKITParser.DO - 6)) | (1 << (BKITParser.WHILE - 6)) | (1 << (BKITParser.RETURN - 6)) | (1 << (BKITParser.BREAK - 6)) | (1 << (BKITParser.CONTINUE - 6)) | (1 << (BKITParser.TRUE - 6)) | (1 << (BKITParser.FALSE - 6)) | (1 << (BKITParser.VAR - 6)) | (1 << (BKITParser.NOT - 6)) | (1 << (BKITParser.SUB - 6)) | (1 << (BKITParser.LP - 6)) | (1 << (BKITParser.INTLIT - 6)) | (1 << (BKITParser.FLOATLIT - 6)) | (1 << (BKITParser.ID - 6)) | (1 << (BKITParser.STRINGLIT - 6)))) != 0):
                 self.state = 271
                 self.stmt()
                 self.state = 276
@@ -2266,7 +2264,7 @@ class BKITParser ( Parser ):
             self.state = 316
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if ((((_la - 27)) & ~0x3f) == 0 and ((1 << (_la - 27)) & ((1 << (BKITParser.NOT - 27)) | (1 << (BKITParser.SUB - 27)) | (1 << (BKITParser.LP - 27)) | (1 << (BKITParser.INTLIT - 27)) | (1 << (BKITParser.FLOATLIT - 27)) | (1 << (BKITParser.BOOLEANLIT - 27)) | (1 << (BKITParser.ID - 27)) | (1 << (BKITParser.STRINGLIT - 27)))) != 0):
+            if ((((_la - 24)) & ~0x3f) == 0 and ((1 << (_la - 24)) & ((1 << (BKITParser.TRUE - 24)) | (1 << (BKITParser.FALSE - 24)) | (1 << (BKITParser.NOT - 24)) | (1 << (BKITParser.SUB - 24)) | (1 << (BKITParser.LP - 24)) | (1 << (BKITParser.INTLIT - 24)) | (1 << (BKITParser.FLOATLIT - 24)) | (1 << (BKITParser.ID - 24)) | (1 << (BKITParser.STRINGLIT - 24)))) != 0):
                 self.state = 308
                 self.exp()
                 self.state = 313
@@ -2699,7 +2697,7 @@ class BKITParser ( Parser ):
                 self.state = 364
                 self.exp4()
                 pass
-            elif token in [BKITParser.SUB, BKITParser.LP, BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.BOOLEANLIT, BKITParser.ID, BKITParser.STRINGLIT]:
+            elif token in [BKITParser.TRUE, BKITParser.FALSE, BKITParser.SUB, BKITParser.LP, BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.ID, BKITParser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 365
                 self.exp5()
@@ -2760,7 +2758,7 @@ class BKITParser ( Parser ):
                 self.state = 369
                 self.exp5()
                 pass
-            elif token in [BKITParser.LP, BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.BOOLEANLIT, BKITParser.ID, BKITParser.STRINGLIT]:
+            elif token in [BKITParser.TRUE, BKITParser.FALSE, BKITParser.LP, BKITParser.INTLIT, BKITParser.FLOATLIT, BKITParser.ID, BKITParser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 370
                 self.exp6(0)
@@ -2996,8 +2994,11 @@ class BKITParser ( Parser ):
         def STRINGLIT(self):
             return self.getToken(BKITParser.STRINGLIT, 0)
 
-        def BOOLEANLIT(self):
-            return self.getToken(BKITParser.BOOLEANLIT, 0)
+        def TRUE(self):
+            return self.getToken(BKITParser.TRUE, 0)
+
+        def FALSE(self):
+            return self.getToken(BKITParser.FALSE, 0)
 
         def getRuleIndex(self):
             return BKITParser.RULE_all_lit
@@ -3020,7 +3021,7 @@ class BKITParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 396
             _la = self._input.LA(1)
-            if not(((((_la - 61)) & ~0x3f) == 0 and ((1 << (_la - 61)) & ((1 << (BKITParser.INTLIT - 61)) | (1 << (BKITParser.FLOATLIT - 61)) | (1 << (BKITParser.BOOLEANLIT - 61)) | (1 << (BKITParser.STRINGLIT - 61)))) != 0)):
+            if not(((((_la - 24)) & ~0x3f) == 0 and ((1 << (_la - 24)) & ((1 << (BKITParser.TRUE - 24)) | (1 << (BKITParser.FALSE - 24)) | (1 << (BKITParser.INTLIT - 24)) | (1 << (BKITParser.FLOATLIT - 24)) | (1 << (BKITParser.STRINGLIT - 24)))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

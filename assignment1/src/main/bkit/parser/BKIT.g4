@@ -121,7 +121,7 @@ operands: LP exp RP
         ;
 
 //operand: all_literal | func_call_exp | var_id | LP expression RP ;
-all_lit: INTLIT | FLOATLIT | STRINGLIT | BOOLEANLIT;
+all_lit: INTLIT | FLOATLIT | STRINGLIT | TRUE | FALSE;
 
 RELATIONAL: RELATIONAL_FLOAT | RELATIONAL_INT;
 RELATIONAL_INT:  EQINT | NEQINT | GTINT | LTINT | GTEINT | LTEINT ;
@@ -245,9 +245,6 @@ INTLIT: DEC | HEX | OCT;
 FLOATLIT: DEC DOT (EXPONENT | DIGIT+ EXPONENT?)?
         | DEC EXPONENT
         ;
-
-// Bool
-BOOLEANLIT: TRUE | FALSE;
 
 // 3.3.1 Identifiers
 ID: [a-z][_a-zA-Z0-9]* ;

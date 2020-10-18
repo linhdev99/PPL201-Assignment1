@@ -115,3 +115,61 @@ Var: sName = "Huynh Pham Phuoc Linh", sName = "Linh";"""
 Var: x[1][1] = {{1.2+.2e3},{12e-4*.12.9e-3}};"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,215))
+
+    def test_16_successfull(self):
+        input = r"""Var: x, y, z[3], f[3][4];
+    Body:
+        x = 10;
+        Var: a = x + 1;
+        y = x \. a +. 1.2e3 - 15. *. 10.10e10 *. -9.9e-1;
+        f[3][4] = {{1,2,3},{3+y,x+a,x+y}};
+        x = f[1-foo2(2*f[2][2])][1+foo()] + 1;
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,216))
+
+    def test_17_successfull(self):
+        input = r"""Var: x, y, z[3], f[3][4];
+    Body:
+        x = 10;
+        Var: a = x + 1;
+        y = x \. a +. 1.2e3 - 15. *. 10.10e10 *. -9.9e-1;
+        f[3][4] = {{1,2,3},{3+y,x+a,x+y}};
+        x = f[1-foo2(2*f[2][2])][1+foo()] + 1;
+        Var: test[10][10][10][10][10];
+        test[x][y][z[1][1][(x+y)*a]][f[1][2]][a] = {{x*f},{f[1][4]-(f[1][1]+a)},{x},{y},{f[2][3]}};
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,217))
+
+    def test_18_successfull(self):
+        input = r"""Var: x, y, z[3], f[3][4];
+    Body:
+        x = !(y && z[1]);
+        f[1][1] = !(x || y) && z[1];
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,218))
+
+    def test_19_successfull(self):
+        input = r"""Var: x, y, z[3], f[3][4], a, b;
+    Body:
+        a = True;
+        b = False;
+        x = !(y && z[1]);
+        f[1][1] = !x || !(y && z[a&&b]);
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,219))
+
+    def test_20_successfull(self):
+        input = r"""Var: x, y, z[3], f[3][4], a, b;
+    Body:
+        Var: c = False;
+        a = True;
+        b = a && (c || False);
+        x = !(y && z[1]);
+        f[1][1] = !x || !(y && z[a&&b]);
+    EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,220))
