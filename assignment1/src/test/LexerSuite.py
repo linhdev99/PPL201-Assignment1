@@ -732,7 +732,7 @@ s **dasd ** "\t" or || || |||||| a_M3ff3 While \ For y84
         self.assertTrue(TestLexer.checkLexeme(
             r"""
 ** // sad ad var,+,erter, Mter tertaf4 , with,=,- **
-to >= ( f3451caert : ] to s_Ie94f for ,rt inertert54teger ; , for re4ern If fdBbfd7 + r5e534al <> if do downto :
+0xAB12FB 0o23123 0X12439DABEF 0O123123 to >= ( f3451caert : ] to s_Ie94f for ,rt inertert54teger ; , for re4ern If fdBbfd7 + r5e534al <> if do downto :
 (* * ) e4686,end,rf588 > dfdR8121,ert Return Var: ** .sd34';, .\ fsdf sdf'3
 ;df 'dk'4l'; d;f'lad 'fd' dfdsf';l';dfsd,f3 df
 dlf;gdkf;lh 
@@ -740,7 +740,7 @@ f/41/2/3??? 4/2 3@@34#)$()_($_
 ** sa
 fdtt45 <<>>,..>>(;;:)-=+.-.
             """,
-            r"""to,>=,(,f3451caert,:,],to,s_Ie94f,for,,,rt,inertert54teger,;,,,for,re4ern,If,fdBbfd7,+,r5e534al,<,>,if,do,downto,:,(,*,*,),e4686,,,end,,,rf588,>,dfdR8121,,,ert,Return,Var,:,sa,fdtt45,<,<,>,>,,,.,.,>,>,(,;,;,:,),-,=,+.,-.,<EOF>""",
+            r"""0xAB12FB,0o23123,0X12439DABEF,0O123123,to,>=,(,f3451caert,:,],to,s_Ie94f,for,,,rt,inertert54teger,;,,,for,re4ern,If,fdBbfd7,+,r5e534al,<,>,if,do,downto,:,(,*,*,),e4686,,,end,,,rf588,>,dfdR8121,,,ert,Return,Var,:,sa,fdtt45,<,<,>,>,,,.,.,>,>,(,;,;,:,),-,=,+.,-.,<EOF>""",
             180
         ))
 

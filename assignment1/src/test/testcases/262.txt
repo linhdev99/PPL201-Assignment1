@@ -1,0 +1,7 @@
+Var: str;
+Function: test_function_call
+Body:
+str = 5;
+foo(Return 5);
+Return;
+EndBody.

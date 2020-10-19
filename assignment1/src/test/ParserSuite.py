@@ -173,3 +173,100 @@ Var: x[1][1] = {{1.2+.2e3},{12e-4*.12.9e-3}};"""
     EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,220))
+
+    def test_21_successfull(self):
+        input = r"""Function: foo
+Parameter: x
+Body:
+    Var: a,b,c[10];
+        Body:
+            a = 3 + doSomething();
+            b = 0x44AF99 + a * 0xA23CD - 0o2123 + e[3] - !(True && a);
+            c[3] = {1.2, 10e9, 10.10e-10 *. 132. + 11.1e+5 \. 2e10};
+            Var: v, r = 10., h = 5.e1, fls = False;
+            v = (4. \. 3.) *. 3.14 *. r *. r *. r;
+        EndBody.
+    If (x%2==0) Then
+        Return x * foo(x-1);
+    Else
+        Return int_to_float(a*(b-x)) +. c[3];
+    EndIf.
+EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,221))
+
+    def test_22_successfull(self):
+        input = r"""Function: foo
+Parameter: x
+Body:
+    Var: a,b,c[10];
+        Body:
+            a = 3 + doSomething();
+            b = 0x44AF99 + a * 0xA23CD - 0o2123 + e[3] - !(True && a);
+            c[3] = {1.2, 10e9, 10.10e-10 *. 132. + 11.1e+5 \. 2e10};
+            Var: v, r = 10., h = 5.e1, fls = False;
+            v = (4. \. 3.) *. 3.14 *. r *. r *. r;
+        EndBody.
+    If (x%2==0) Then
+        Return x * foo(x-1);
+    Else
+        Return int_to_float(a*(b-x)) +. c[3];
+    EndIf.
+EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,222))
+
+    def test_23_successfull(self):
+        input = r"""Function: foo
+Parameter: x
+Body:
+    Var: a,b[2][3],c;
+        Body:
+            a = 0;
+            b[2][3] = {{1,2,3},{4,5}};
+            c = "";
+        EndBody.
+    If x < 1 Then
+        Return x + b[0][0];
+    Else
+        For (i = a, i < 10, 2) Do
+            c = c + int_to_string(x) + ": Value " + int_to_string(i) + "\n";
+        EndFor.
+        print(c);
+        Return foo(x-1);
+    EndIf.
+EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,223))
+
+    def test_24_successfull(self):
+        input = r"""Function: foo
+Parameter: x
+Body:
+    Var: a,b[2][3],c;
+        Body:
+            a = 0;
+            b[2][3] = {{1,2,3},{4,5}};
+            c = "";
+        EndBody.
+    If x < 1 Then
+        Return x + b[0][0];
+    ElseIf (x > 1) && (x < 5) Then
+        For (i = a, i < 20, 1) Do
+            If i % 2 == 0 Then
+                c = "Test If, For statement";
+                **Test thoi, lam gi cang :v**
+                print(c);
+            EndIf.
+            Return foo(x-1);
+        EndFor.
+    Else
+        For (i = a, i < 10, 2) Do
+            c = c + int_to_string(x) + ": Value " + int_to_string(i) + "\n";
+        EndFor.
+        print(c);
+        Return foo(x-1);
+    EndIf.
+EndBody."""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,224))

@@ -1,0 +1,10 @@
+Var: str;
+Function: test_nested_do_while
+Body:
+Do
+ Do
+  nothing();
+ EndDo.
+While False
+Return;
+EndBody.

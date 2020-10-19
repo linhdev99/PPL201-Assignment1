@@ -1,0 +1,12 @@
+Var: str;
+Function: main
+	Body:
+		Do
+			Do
+				nothing();
+			 While True
+			 EndDo.
+		While False
+		EndDo.
+	Return;
+EndBody.

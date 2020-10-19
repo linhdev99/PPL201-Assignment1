@@ -6,7 +6,7 @@ import unittest
 from antlr4 import *
 
 # Make sure that ANTLR_JAR is set to antlr-4.8-complete.jar
-ANTLR_JAR = r"""C:\Users\Administrator\Desktop\xoa\antlr-4.8-complete.jar"""#os.environ.get('ANTLR_JAR')
+ANTLR_JAR = r"""D:\Peter Linh\PPL\antlr-4.8-complete.jar"""#os.environ.get('ANTLR_JAR')
 TARGET = '../target/main/mc/parser' if os.name == 'posix' else os.path.normpath('../target/')
 
 
