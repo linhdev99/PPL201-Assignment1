@@ -34,10 +34,11 @@ main: stmt*;
 var_declare_stmt: var_single
                 | var_list;
 var_single: var_normal SEMI;
-var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
+//var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
+var_list: BODY COLON stmt* ENDBODY DOT;
 var_normal: (VAR COLON)? var_normal_list (COMMA var_normal_list)*;
-var_normal_list: scalar_var (EQ var_vp)?;
-var_vt: scalar_var (COMMA scalar_var)*;
+var_normal_list: scalar_var | assign_stmt;
+//var_vt: scalar_var (COMMA scalar_var)*;
 var_vp: array_vp
       | scalar_var
       | exp;
@@ -61,11 +62,14 @@ stmt: var_declare_stmt
 // body declare
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
+//assign statement
+assign_stmt: scalar_var EQ var_vp;
+
 // function declare
 func_declare: FUNCTION COLON ID parameter_func? body_declare;
 
 // parameter declare
-parameter_func: PARAMETER COLON scalar_var (COMMA scalar_var)*;
+parameter_func: PARAMETER COLON var_normal_list (COMMA var_normal_list)*;
 
 // if-elseif-else statement
 if_stmt: IF exp THEN stmt* elseif_stmt* else_stmt? ENDIF DOT;
@@ -110,7 +114,7 @@ exp1: exp1 ( AND | OR ) exp2 | exp2;
 exp2: exp2 (ADD | SUB | ADDDOT | SUBDOT) exp3 | exp3;
 exp3: exp3 ( MUL | DIV | MOD | MULDOT | DIVDOT) exp4 | exp4;
 exp4: (NOT) exp4 | exp5;
-exp5: (SUB) exp5 | exp6;
+exp5: (SUB | SUBDOT) exp5 | exp6;
 exp6: exp6 op_index | operands;
 op_index: LSB exp RSB;
 operands: LP exp RP
@@ -287,30 +291,3 @@ fragment STR_CHAR: ~[\b\f\r\n\t'"\\] | ESC_SEQ ;
 fragment ESC_SEQ: '\\' [bfrnt'\\] | '\'"' ;
 fragment ESC_ILLEGAL: '\\' ~[bfrnt'\\] | '\'' | '\'' ~["];
 fragment UNT_CMT: ~[*] ;
-
-//fragment A: [aA];
-//fragment B: [bB];
-//fragment C: [cC];
-//fragment D: [dD];
-//fragment E: [eE];
-//fragment F: [fF];
-//fragment G: [gG];
-//fragment H: [hH];
-//fragment I: [iI];
-//fragment J: [jJ];
-//fragment K: [kK];
-//fragment L: [lL];
-//fragment M: [mM];
-//fragment N: [nN];
-//fragment O: [oO];
-//fragment P: [pP];
-//fragment Q: [qQ];
-//fragment R: [rR];
-//fragment S: [sS];
-//fragment T: [tT];
-//fragment U: [uU];
-//fragment V: [vV];
-//fragment W: [wW];
-//fragment X: [xX];
-//fragment Y: [yY];
-//fragment Z: [zZ];

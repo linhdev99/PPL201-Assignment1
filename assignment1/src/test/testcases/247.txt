@@ -1,0 +1,9 @@
+Body:
+    Var: a, b, c;
+    a = aaa() + 1;
+    b = a *. 2.
+    c = !True;
+    If a < b Then
+        bbb();
+    EndIf.
+EndBody.
