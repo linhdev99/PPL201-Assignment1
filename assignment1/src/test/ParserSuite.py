@@ -904,6 +904,257 @@ EndBody."""
         expect = "Error on line 6 col 31: ("
         self.assertTrue(TestParser.checkParser(input, expect, 252))
 
+    def test_53_err(self):
+        input = r"""Function: foo
+Parameter: x = 5, y
+Body:
+    a = 3 + doSomething();
+    b = 0x44AF99 + a * 0xA23CD - 0o2123 + e[3] - !(True && a);
+    c[3] = {1.2, 10e9, 10.10e-10 *. 132. + 11.1e+5 \. 2e10};
+    Var: v, r = 10., h = 5.e1, fls = False;
+    v = (4. \. 3.) *. 3.14 *. r *. r *. r;
+    If (x%2==0)
+        Return x * foo(x-1);
+    Else
+        Return int_to_float(a*(b-x)) +. c[3];
+    EndIf.
+EndBody."""
+        expect = "Error on line 10 col 8: Return"
+        self.assertTrue(TestParser.checkParser(input, expect, 253))
+
+    def test_54_err(self):
+        input = r"""Function: foo
+Parameter: x = 5, y
+Body:
+    a = 3 + doSomething();
+    b = 0x44AF99 + a * 0xA23CD - 0o2123 + e[3] - !(True && a);
+    c[3] = {1.2, 10e9, 10.10e-10 *. 132. + 11.1e+5 \. 2e10};
+    Var: v, r = 10., h = 5.e1, fls = False;
+    v = (4. \. 3.) *. 3.14 *. r *. r *. r;
+    If (x%2=0) Then
+        Return x * foo(x-1);
+    Else
+        Return int_to_float(a*(b-x)) +. c[3];
+    EndIf.
+EndBody."""
+        expect = "Error on line 9 col 11: ="
+        self.assertTrue(TestParser.checkParser(input, expect, 254))
+
+    def test_55_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 255))
+
+    def test_56_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 256))
+
+    def test_57_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 257))
+
+    def test_58_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 258))
+
+    def test_59_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 259))
+
+    def test_60_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 260))
+
+    def test_61_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 261))
+
+    def test_62_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 262))
+
+    def test_63_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 263))
+
+    def test_64_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 264))
+
+    def test_65_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 265))
+
+    def test_66_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 266))
+
+    def test_67_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 267))
+
+    def test_68_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 268))
+
+    def test_69_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 269))
+
+    def test_70_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 270))
+
+    def test_71_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 271))
+
+    def test_72_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 272))
+
+    def test_73_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 273))
+
+    def test_74_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 274))
+
+    def test_75_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 275))
+
+    def test_76_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 276))
+
+    def test_77_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 277))
+
+    def test_78_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 278))
+
+    def test_79_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 279))
+
+    def test_80_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 280))
+
+    def test_81_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 281))
+
+    def test_82_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 282))
+
+    def test_83_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 283))
+
+    def test_84_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 284))
+
+    def test_85_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 285))
+
+    def test_86_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 286))
+
+    def test_87_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 287))
+
+    def test_88_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 288))
+
+    def test_89_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 289))
+
+    def test_90_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 290))
+
+    def test_91_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 291))
+
+    def test_92_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 292))
+
+    def test_93_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 293))
+
+    def test_94_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 294))
+
+    def test_95_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 295))
+
+    def test_96_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 296))
+
+    def test_97_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 297))
+
     def test_98_err(self):
         input = r"""Var"""
         expect = "Error on line 1 col 3: <EOF>"

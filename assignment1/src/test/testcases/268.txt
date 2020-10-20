@@ -1,13 +1,1 @@
-Var: str;
-Function: test_nested_do_while
-Body:
-Do
- Do
-  nothing();
- While True
- EndDo.
- Break;
-While False
-Return;
-**test comment**
-EndBody.
+Var

@@ -35,7 +35,7 @@ var_declare_stmt: var_single
                 | var_list;
 var_single: var_normal SEMI;
 //var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
-var_list: BODY COLON stmt* ENDBODY DOT;
+var_list: body_declare;//BODY COLON stmt* ENDBODY DOT;
 var_normal: (VAR COLON)? var_normal_list (COMMA var_normal_list)*;
 var_normal_list: scalar_var | assign_stmt;
 //var_vt: scalar_var (COMMA scalar_var)*;
