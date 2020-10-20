@@ -644,6 +644,146 @@ EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 235))
 
+    def test_36_err(self):
+        input = r"""Function main
+Body:
+    str = **cai nay khong phai string** "Value \n";
+    num = **cai nay khongo phai num** 10E-5;
+    value = foo(str, num, string_to_float(str) + num **Test Parser thoi**, **Test cho nay** str + float_to_string(num));
+    If num > 100. Then 
+        **True: num > 100 ???**
+    ElseIf num > 35 Then
+        **???$$#!@$)#(!)@(*#(!)@*)%#*$@#$489878934234-*4234(*&(*&#%*%!@^#^!@#^@#**
+    Else
+        val = "\n\b\t\f\\" **adasd???**;
+        **
+        * line 1 *
+        * line 2 *
+        **
+    EndIf.
+EndBody."""
+        expect = "Error on line 1 col 9: main"
+        self.assertTrue(TestParser.checkParser(input, expect, 236))
+
+    def test_37_err(self):
+        input = r"""Function: main
+Body:
+    str = **cai nay khong phai string** "Value \n"
+    num = **cai nay khongo phai num** 10E-5;
+    value = foo(str, num, string_to_float(str) + num **Test Parser thoi**, **Test cho nay** str + float_to_string(num));
+    If num > 100. Then 
+        **True: num > 100 ???**
+    ElseIf num > 35 Then
+        **???$$#!@$)#(!)@(*#(!)@*)%#*$@#$489878934234-*4234(*&(*&#%*%!@^#^!@#^@#**
+    Else
+        val = "\n\b\t\f\\" **adasd???**;
+        **
+        * line 1 *
+        * line 2 *
+        **
+    EndIf.
+EndBody."""
+        expect = "Error on line 4 col 4: num"
+        self.assertTrue(TestParser.checkParser(input, expect, 237))
+
+    def test_38_err(self):
+        input = r"""Function: main
+Body:
+    str = **cai nay khong phai string** "Value \n";
+    num = **cai nay khongo phai num** 10E-5;
+    value foo(str, num, string_to_float(str) + num **Test Parser thoi**, **Test cho nay** str + float_to_string(num));
+    If num > 100. Then 
+        **True: num > 100 ???**
+    ElseIf num > 35 Then
+        **???$$#!@$)#(!)@(*#(!)@*)%#*$@#$489878934234-*4234(*&(*&#%*%!@^#^!@#^@#**
+    Else
+        val = "\n\b\t\f\\" **adasd???**;
+        **
+        * line 1 *
+        * line 2 *
+        **
+    EndIf.
+EndBody."""
+        expect = "Error on line 5 col 10: foo"
+        self.assertTrue(TestParser.checkParser(input, expect, 238))
+
+    def test_39_err(self):
+        input = r"""Function: main
+Body:
+    str = **cai nay khong phai string** "Value \n";
+    num = **cai nay khongo phai num** 10E-5;
+    value = foo(str, num, string_to_float(str) + num **Test Parser thoi**, **Test cho nay** str + float_to_string(num));
+    If num > 100. Then 
+        **True: num > 100 ???*
+    ElseIf num > 35 Then
+        **???$$#!@$)#(!)@(*#(!)@*)%#*$@#$489878934234-*4234(*&(*&#%*%!@^#^!@#^@#**
+    Else
+        val = "\n\b\t\f\\" **adasd???**;
+        **
+        * line 1 *
+        * line 2 *
+        **
+    EndIf.
+EndBody."""
+        expect = "?"
+        self.assertTrue(TestParser.checkParser(input, expect, 239))
+
+    def test_40_err(self):
+        input = r"""Function: main
+Body:
+    str = **cai nay khong phai string** "Value \n";
+    num = **cai nay khongo phai num** 10E-5;
+    value = foo(str, num, string_to_float(str) + num **Test Parser thoi**, **Test cho nay** str + float_to_string(num));
+    IF num > 100. Then 
+        **True: num > 100 ???**
+    ElseIf num > 35 Then
+        **???$$#!@$)#(!)@(*#(!)@*)%#*$@#$489878934234-*4234(*&(*&#%*%!@^#^!@#^@#**
+    Else
+        val = "\n\b\t\f\\" **adasd???**;
+        **
+        * line 1 *
+        * line 2 *
+        **
+    EndIf.
+EndBody."""
+        expect = "I"
+        self.assertTrue(TestParser.checkParser(input, expect, 240))
+
+    def test_41_err(self):
+        input = r"""Var:"""
+        expect = "Error on line 1 col 4: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 241))
+
+    def test_42_err(self):
+        input = r"""Var:x"""
+        expect = "Error on line 1 col 5: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 242))
+
+    def test_43_err(self):
+        input = r"""Var:x="""
+        expect = "Error on line 1 col 6: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 243))
+
+    def test_44_err(self):
+        input = r"""Var:x,y=5"""
+        expect = "Error on line 1 col 9: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 244))
+
+    def test_45_err(self):
+        input = r"""Function: foo
+Parameter x,y[5]
+Body:
+    Var: x = 5;
+    x[5] = {1,2,3,4,x};
+EndBody."""
+        expect = "Error on line 2 col 10: x"
+        self.assertTrue(TestParser.checkParser(input, expect, 245))
+
+    def test_98_err(self):
+        input = r"""Var"""
+        expect = "Error on line 1 col 3: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 298))
+
     def test_99_successfull(self):
         input = r""""""
         expect = "successful"
