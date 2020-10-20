@@ -59,21 +59,21 @@ Var: z[5];"""
     def test_7_successfull(self):
         input = r"""Var: x, a;
 Var: y = 1, b;
-Var: z[5], c = z[1];"""
+Var: z[5], c = 1;"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 207))
 
     def test_8_successfull(self):
         input = r"""Var: x, a;
 Var: y = 1, b[3] = {1,2,3};
-Var: z[5], c = z[1];"""
+Var: z[5], c = 1;"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 208))
 
     def test_9_successfull(self):
         input = r"""Var: x, a, id = 1710165;
 Var: y = 1, b[3] = {1,2,3};
-Var: z[5], c = z[1];
+Var: z[5], c = 1;
 Var: sName = "Huynh Pham Phuoc Linh";"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 209))
@@ -140,7 +140,7 @@ Var: x[1][1] = {};"""
         Var: test[10][10][10][10][10];
         test[x][y][z[1][1][(x+y)*a]][f[1][2]][a] = {{x*f},{f[1][4]-(f[1][1]+a)},{x},{y},{f[2][3]}};
     EndBody."""
-        expect = "Error on line 5 col 19: +"
+        expect = "Error on line 5 col 17: x"
         self.assertTrue(TestParser.checkParser(input, expect, 217))
 
     def test_18_successfull(self):
@@ -1573,112 +1573,348 @@ Function: main
         expect = "Error on line 1 col 25: +"
         self.assertTrue(TestParser.checkParser(input, expect, 278))
 
-    def test_79_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_79_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};"""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 279))
 
-    def test_80_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_80_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;"""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 280))
 
-    def test_81_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_81_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+        y = a + a[1+1];
+        "str"[1] = "e";
+        da = "str"[1];
+    EndIf.
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 281))
 
-    def test_82_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_82_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+        y = a + a[1+1];
+        {1,2}[1] = "e";
+        da = "str"[1];
+    EndIf.
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 282))
 
-    def test_83_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_83_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+        y = a + a[1+1];
+        {1,2}[1] = "e";
+        da = "str"[1];
+        {1,2}[2] = {1,2,3+1e3};
+        da = "dasd" + "dasd";
+    EndIf.
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 283))
 
     def test_84_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+        y = a + a[1+1];
+        {1,2}[1] = "e";
+        da = "str"[1];
+        {1,2}[2] = {1,2,3+1e3};
+        da = "dasd" + "dasd;
+    EndIf.
+EndBody."""
+        expect = "dasd;"
         self.assertTrue(TestParser.checkParser(input, expect, 284))
 
     def test_85_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+    EndIf.
+    Function: foo
+    Body:
+    EndBody.
+EndBody."""
+        expect = "Error on line 7 col 4: Function"
         self.assertTrue(TestParser.checkParser(input, expect, 285))
 
     def test_86_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 5;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Body:
+EndBody."""
+        expect = "Error on line 8 col 0: Body"
         self.assertTrue(TestParser.checkParser(input, expect, 286))
 
     def test_87_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 6;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1.2];
+Body:
+EndBody."""
+        expect = "Error on line 9 col 13: 1.2"
         self.assertTrue(TestParser.checkParser(input, expect, 287))
 
     def test_88_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 8;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1] = {1,2,3}
+Body:
+EndBody."""
+        expect = "Error on line 9 col 16: ="
         self.assertTrue(TestParser.checkParser(input, expect, 288))
 
     def test_89_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1.2]
+Body:
+EndBody."""
+        expect = "Error on line 9 col 25: 1.2"
         self.assertTrue(TestParser.checkParser(input, expect, 289))
 
     def test_90_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 2;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Var: x = 3;
+Body:
+EndBody."""
+        expect = "Error on line 10 col 0: Var"
         self.assertTrue(TestParser.checkParser(input, expect, 290))
 
     def test_91_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+If True Then EndIf.
+Body:
+EndBody."""
+        expect = "Error on line 10 col 0: If"
         self.assertTrue(TestParser.checkParser(input, expect, 291))
 
-    def test_92_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_92_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 292))
 
-    def test_93_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_93_successfull(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    "dasd"[1] = "dsdas"[1][3];
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 293))
 
     def test_94_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: "dasd"[1] = "dsdas"[1][3];
+EndBody."""
+        expect = "Error on line 12 col 9: dasd"
         self.assertTrue(TestParser.checkParser(input, expect, 294))
 
     def test_95_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas"[1][3];
+EndBody."""
+        expect = "Error on line 12 col 23: ["
         self.assertTrue(TestParser.checkParser(input, expect, 295))
 
-    def test_96_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+    def test_96_successful(self):
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas";
+    a[1] = a[1] + a[2];
+EndBody."""
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 296))
 
     def test_97_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1],
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas";
+    a[1] = a[1] + a[2];
+EndBody."""
+        expect = "Error on line 10 col 0: Body"
         self.assertTrue(TestParser.checkParser(input, expect, 297))
 
     def test_98_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas";
+    a[1] = a[1] + a[2];
+EndBody.
+Var: abc;
+If abc == True Then EndIf."""
+        expect = "Error on line 16 col 0: If"
         self.assertTrue(TestParser.checkParser(input, expect, 298))
 
     def test_99_successfull(self):
-        input = r""""""
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas";
+    a[1] = a[1] + a[2];
+EndBody.
+Var: abc;
+Function: main2
+Body:
+    abc = {{1,23},{32,32}}[1][1];
+EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 299))
 
     def test_100_successfull(self):
-        input = r""""""
+        input = r"""Var: a[1] = {{1,2,3},{1,1e2}};
+Var: a = 1;
+Function: main
+Body:
+    If True Then
+    EndIf.
+EndBody.
+Function: foo
+Parameter: x[1], a[5][5][1]
+Body:
+    x[f + foo()] = {1,3,4}[3];
+    Var: a[1] = "dsdas";
+    a[1] = a[1] + a[2];
+EndBody.
+Var: abc;
+Function: main2
+Body:
+    abc = {{1,23},{32,32}}[1][1];
+    main();
+    foo(abc,main3({1,2,3}));
+EndBody."""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 300))

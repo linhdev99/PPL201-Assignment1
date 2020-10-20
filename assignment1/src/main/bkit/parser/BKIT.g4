@@ -36,7 +36,7 @@ var_single: var_normal SEMI;
 //var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
 //var_list: body_declare;//BODY COLON stmt* ENDBODY DOT;
 var_normal: VAR COLON var_normal_list (COMMA var_normal_list)*;
-var_normal_list: scalar_var_int (EQ (array_vp_noexp | scalar_var_int | all_lit | func_call))? ;
+var_normal_list: scalar_var_int (EQ (array_vp_noexp | all_lit ))? ;
 //var_vt: scalar_var (COMMA scalar_var)*;
 var_vp: array_vp
       | scalar_var
@@ -44,7 +44,6 @@ var_vp: array_vp
 array_vp: LCB (var_vp (COMMA var_vp)*)? RCB;
 
 var_vp_noexp: array_vp_noexp
-            | scalar_var
             | all_lit;
 array_vp_noexp: LCB (var_vp_noexp (COMMA var_vp_noexp)*)? RCB;
 /**
@@ -67,8 +66,8 @@ stmt_spe: assign_stmt SEMI
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
 //assign statement
-assign_stmt: ((scalar_var | (func_call | STRINGLIT | array_vp)) index_var*) EQ var_vp;
-
+assign_stmt: assign_part EQ (assign_part | exp);
+assign_part: (scalar_var | ((func_call | STRINGLIT | array_vp)) index_var*);
 // function declare
 func_declare: FUNCTION COLON ID parameter_func? body_declare;
 
@@ -128,6 +127,7 @@ op_index: LSB exp RSB;
 operands: LP exp RP
         | func_call
         | all_lit
+        | LCB exp (COMMA exp)* RCB
         | ID
         ;
 
