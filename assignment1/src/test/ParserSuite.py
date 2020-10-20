@@ -941,63 +941,579 @@ EndBody."""
         self.assertTrue(TestParser.checkParser(input, expect, 254))
 
     def test_55_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        DO
+            a = a + 1;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "D"
         self.assertTrue(TestParser.checkParser(input, expect, 255))
 
     def test_56_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Doo
+            a = a + 1;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 7 col 12: a"
         self.assertTrue(TestParser.checkParser(input, expect, 256))
 
     def test_57_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + ;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 7 col 20: ;"
         self.assertTrue(TestParser.checkParser(input, expect, 257))
 
     def test_58_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) | (c <= 1) Then
+                xx = x + y \ z;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "|"
         self.assertTrue(TestParser.checkParser(input, expect, 258))
 
     def test_59_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx == x + y \ z;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 12 col 19: =="
         self.assertTrue(TestParser.checkParser(input, expect, 259))
 
     def test_60_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z ?;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "?"
         self.assertTrue(TestParser.checkParser(input, expect, 260))
 
     def test_61_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1A;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "A"
         self.assertTrue(TestParser.checkParser(input, expect, 261))
 
     def test_62_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 17 col 8: Var"
         self.assertTrue(TestParser.checkParser(input, expect, 262))
 
     def test_63_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0 i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 21 col 31: i"
         self.assertTrue(TestParser.checkParser(input, expect, 263))
 
     def test_64_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i == 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 21 col 27: =="
         self.assertTrue(TestParser.checkParser(input, expect, 264))
 
     def test_65_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Error on line 28 col 36: Else"
         self.assertTrue(TestParser.checkParser(input, expect, 265))
 
     def test_66_err(self):
-        input = r"""Var"""
-        expect = "Error on line 1 col 3: <EOF>"
+        input = r"""Var: a,b,c,x,y,z,sID,sName;
+Function: main
+    Body:
+        x = 1000000.;
+        a = 0;
+        Do
+            a = a + b;
+            x = x \. int_to_float(a);
+            c = float_to_int(x) % 5;
+            Var: xx, yy = 0;
+            If (c > 3) || (c <= 1) Then
+                xx = x + y \ z * 1;
+            Else
+                xx = x - y \ z;
+            EndIf.
+        While x < 1 EndDo.
+        Var: yy = True;
+        If yy Then
+            While yy Do
+                Do
+                    For (i = 0, i < 10, 1) Do
+                        While yy Do
+                            If yy Then
+                                If yy Then
+                                    If !yy Then
+                                        print("Dong nay khong bao gio duoc in!");
+                                        Break;
+                                    Else
+                                        sID = 1710165.4;
+                                        sName = "Phuoc Linh\e";
+                                        yy = False;
+                                        Continue;
+                                    EndIf.
+                                EndIf.
+                            EndIf.
+                        EndWhile.
+                    EndFor.
+                While yy EndDo.
+            EndWhile.
+        Else
+            x = x \. y;
+            Continue;
+        EndIf.
+    EndBody."""
+        expect = "Phuoc Linh\e"
         self.assertTrue(TestParser.checkParser(input, expect, 266))
 
     def test_67_err(self):
