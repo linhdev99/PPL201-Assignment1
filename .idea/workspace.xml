@@ -17,14 +17,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assignment1/src/test/testcases/287.txt" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="WindowStateProjectService">
-    <state x="739" y="279" key="FileChooserDialogImpl" timestamp="1602939796707">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="526" y="193" key="FileChooserDialogImpl" timestamp="1603209660362">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="526" y="193" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603209660362" />
     <state x="739" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1602939796707" />
     <state x="328" y="18" key="SettingsEditor" timestamp="1603181181303">
       <screen x="0" y="0" width="1366" height="728" />
