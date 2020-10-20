@@ -1914,6 +1914,7 @@ Function: main2
 Body:
     abc = {{1,23},{32,32}}[1][1];
     main();
+    xyz = main()[3] + abc[0][0];
     foo(abc,main3({1,2,3}));
 EndBody."""
         expect = "successful"
