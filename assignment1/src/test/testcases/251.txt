@@ -1,5 +1,5 @@
 Function: foo
-Paramter: x = 5, y
+Paramter: x, y
 Body:
     Var: a,b,c[10];
         Body:

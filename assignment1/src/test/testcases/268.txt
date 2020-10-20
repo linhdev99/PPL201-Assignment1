@@ -1,1 +1,1 @@
-Var
+While True a = 1; EndWhile.

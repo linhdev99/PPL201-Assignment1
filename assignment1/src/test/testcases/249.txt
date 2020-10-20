@@ -1,3 +1,4 @@
+Function: main
 Body:
     Var: a, b, c = True;
     a = aaa() + + 1;

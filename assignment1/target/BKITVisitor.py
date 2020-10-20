@@ -29,11 +29,6 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKITParser#var_list.
-    def visitVar_list(self, ctx:BKITParser.Var_listContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by BKITParser#var_normal.
     def visitVar_normal(self, ctx:BKITParser.Var_normalContext):
         return self.visitChildren(ctx)
@@ -54,8 +49,33 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKITParser#var_vp_noexp.
+    def visitVar_vp_noexp(self, ctx:BKITParser.Var_vp_noexpContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#array_vp_noexp.
+    def visitArray_vp_noexp(self, ctx:BKITParser.Array_vp_noexpContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by BKITParser#stmt.
     def visitStmt(self, ctx:BKITParser.StmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#stmt_decl.
+    def visitStmt_decl(self, ctx:BKITParser.Stmt_declContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#stmt_notfunc.
+    def visitStmt_notfunc(self, ctx:BKITParser.Stmt_notfuncContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#stmt_spe.
+    def visitStmt_spe(self, ctx:BKITParser.Stmt_speContext):
         return self.visitChildren(ctx)
 
 
@@ -106,6 +126,16 @@ class BKITVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by BKITParser#index_var.
     def visitIndex_var(self, ctx:BKITParser.Index_varContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#scalar_var_int.
+    def visitScalar_var_int(self, ctx:BKITParser.Scalar_var_intContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKITParser#index_var_int.
+    def visitIndex_var_int(self, ctx:BKITParser.Index_var_intContext):
         return self.visitChildren(ctx)
 
 

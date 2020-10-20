@@ -1,5 +1,5 @@
 Function: foo
-Parameter: x = 5, y
+Parameter: x, y
 Body:
     a = 3 + doSomething();
     b = 0x44AF99 + a * 0xA23CD - 0o2123 + e[3] - !(True && a);

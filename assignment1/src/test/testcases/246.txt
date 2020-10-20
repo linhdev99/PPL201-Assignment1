@@ -2,11 +2,9 @@ Function: foo
 Parameter: x
 Body:
     Var: a,b[2][3],c;
-        Body:
             a = 0;
             b[2][] = {{1,2,3},{4,5}};
             c = "";
-        EndBody.
     If x < 1 Then
         Return x + b[0][0];
     Else

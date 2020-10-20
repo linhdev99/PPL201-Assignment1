@@ -30,46 +30,50 @@ options{
 
 program: main EOF;
 
-main: stmt*;
-var_declare_stmt: var_single
-                | var_list;
+main: stmt_decl*;
+var_declare_stmt: var_single;// var_list?;
 var_single: var_normal SEMI;
 //var_list: VAR COLON var_vt SEMI BODY COLON var_single+ ENDBODY DOT;
-var_list: body_declare;//BODY COLON stmt* ENDBODY DOT;
-var_normal: (VAR COLON)? var_normal_list (COMMA var_normal_list)*;
-var_normal_list: scalar_var | assign_stmt;
+//var_list: body_declare;//BODY COLON stmt* ENDBODY DOT;
+var_normal: VAR COLON var_normal_list (COMMA var_normal_list)*;
+var_normal_list: scalar_var_int (EQ (array_vp_noexp | scalar_var_int | all_lit | func_call))? ;
 //var_vt: scalar_var (COMMA scalar_var)*;
 var_vp: array_vp
       | scalar_var
       | exp;
-array_vp: LCB var_vp (COMMA var_vp)* RCB;
+array_vp: LCB (var_vp (COMMA var_vp)*)? RCB;
 
+var_vp_noexp: array_vp_noexp
+            | scalar_var
+            | all_lit;
+array_vp_noexp: LCB (var_vp_noexp (COMMA var_vp_noexp)*)? RCB;
 /**
  * 6 Statements and Control Flow
  */
-stmt: var_declare_stmt
-    | func_declare
-    | call_stmt
-    | if_stmt
-    | for_stmt
-    | while_stmt
-    | doWhile_stmt
-    | break_stmt
-    | continue_stmt
-    | return_stmt
-    ;
-
+stmt: stmt_notfunc | stmt_spe;
+stmt_decl: var_declare_stmt | func_declare;
+stmt_notfunc: var_declare_stmt
+            | if_stmt
+            | for_stmt
+            | while_stmt
+            | doWhile_stmt
+            ;
+stmt_spe: assign_stmt SEMI
+        | break_stmt
+        | continue_stmt
+        | return_stmt
+        | call_stmt;
 // body declare
 body_declare: BODY COLON stmt* ENDBODY DOT;
 
 //assign statement
-assign_stmt: scalar_var EQ var_vp;
+assign_stmt: ((scalar_var | (func_call | STRINGLIT | array_vp)) index_var*) EQ var_vp;
 
 // function declare
 func_declare: FUNCTION COLON ID parameter_func? body_declare;
 
 // parameter declare
-parameter_func: PARAMETER COLON var_normal_list (COMMA var_normal_list)*;
+parameter_func: PARAMETER COLON scalar_var_int (COMMA scalar_var_int)*;
 
 // if-elseif-else statement
 if_stmt: IF exp THEN stmt* elseif_stmt* else_stmt? ENDIF DOT;
@@ -77,11 +81,15 @@ elseif_stmt: ELSEIF exp THEN stmt*;
 else_stmt: ELSE stmt*;
 
 // for statement
-for_stmt: FOR LP scalar_var EQ exp COMMA conditionExpr COMMA updateExpr RP DO stmt* ENDFOR DOT;
+for_stmt: FOR LP ID EQ exp COMMA conditionExpr COMMA updateExpr RP DO stmt* ENDFOR DOT;
 
 //scalar-variable
 scalar_var: ID index_var*;
 index_var: LSB (scalar_var | exp)+ RSB;
+
+//scalar-var-assign
+scalar_var_int: ID index_var_int*;
+index_var_int: LSB INTLIT RSB;
 
 //condition expression
 conditionExpr: exp;
@@ -105,7 +113,7 @@ continue_stmt: CONTINUE SEMI;
 return_stmt: RETURN (scalar_var | all_lit | exp)? SEMI;
 
 //Call statment
-func_call: ID LP (exp (COMMA exp)*)? RP;
+func_call: ID LP ((exp | var_vp) (COMMA (exp | var_vp))*)? RP;
 call_stmt: func_call SEMI;
 
 //expression
@@ -132,8 +140,8 @@ RELATIONAL_FLOAT: EQINT | NEQF | GTF | LTF | GTEF | LTEF ;
 
 fragment DIGIT: [0-9];
 fragment DEC:   '0' | [1-9] DIGIT*;
-fragment HEX:   ('0x'|'0X')[0-9A-F]+;
-fragment OCT:   ('0o'|'0O')[0-7]+;
+fragment HEX:   [0][xX][1-9A-F][0-9A-F]*;
+fragment OCT:   [0][oO][1-7][0-7]*;
 fragment EXP:   [eE];
 fragment EXPONENT: EXP [+-]? DIGIT+;
 

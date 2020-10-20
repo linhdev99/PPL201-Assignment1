@@ -1,1 +1,1 @@
-Var
+If True Then EndIf.

@@ -1,4 +1,5 @@
 Var: x, y, z[3], f[3][4], a, b;
+    Function: main
     Body:
         Var: c = False;
         a = True;

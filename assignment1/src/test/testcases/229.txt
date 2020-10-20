@@ -9,7 +9,7 @@ Function: main
                 For (i = 0, i < z+y, 1) Do
                     a[5] = {1,2,3,4,5};
                     str = "Hello, I'"m Linh";
-                    f = 0x0ABCFF; f1 = 0o01234567;
+                    f = 0xABCFF; f1 = 0o1234567;
                     Do
                         something();
                     While bool_of_string("HIHI") EndDo.
