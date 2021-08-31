@@ -294,3 +294,10 @@ WS: [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 ERROR_CHAR: .;
 UNCLOSE_STRING: .;
 ILLEGAL_ESCAPE: .;
+//
+//possible = ['\b', '\t', '\n', '\f', '\r', '\'"', '\\']
+//		if value[-1] in possible:
+//			raise UncloseString(value[1:-1])
+//		else:
+//			
+//
